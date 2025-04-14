@@ -1,27 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap');
+
+/* CSS Variables for consistent theming */
 :root {
+  /* Primary Brand Colors */
+  --lex-deep-blue: #0A2342;
+  --lex-slate-grey: #708090;
+  --lex-insight-blue: #007BFF;
+  
+  /* Secondary Brand Colors */
+  --lex-off-white: #F8F8F8;
+  --lex-light-grey: #EAEAEA;
+  
+  /* Font Families */
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'EB Garamond', serif;
+  --font-ui: 'Lato', sans-serif;
+  
+  /* Container Sizes */
+  --container-max-width: 1280px;
+  --container-padding: 2rem;
+  
+  /* Basics */
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
+/* Reset */
+html, body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
 }
 
 * {
@@ -30,13 +39,159 @@ body {
   margin: 0;
 }
 
+/* Base Styles */
+body {
+  background-color: var(--lex-off-white);
+  color: var(--lex-deep-blue);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--lex-deep-blue);
+  font-weight: 700;
+}
+
+button, input, select {
+  font-family: var(--font-ui);
+}
+
 a {
-  color: inherit;
+  color: var(--lex-insight-blue);
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Utility Classes */
+.brand-accent {
+  color: var(--lex-insight-blue);
+}
+
+.brand-deep-blue {
+  color: var(--lex-deep-blue);
+}
+
+.brand-slate {
+  color: var(--lex-slate-grey);
+}
+
+.heading-text {
+  font-family: var(--font-heading);
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+}
+
+.ui-text {
+  font-family: var(--font-ui);
+}
+
+.tagline {
+  font-family: var(--font-ui);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Container Styles */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Hero Video Styles */
+.hero-video-container {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px; /* Account for fixed header */
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: blur(3px) brightness(30%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-heading {
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 4px 12px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.hero-text {
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  letter-spacing: 0.015em;
+}
+
+/* Background Patterns */
+.subtle-pattern-bg {
+  background-color: transparent;
+  background-image: 
+    radial-gradient(rgba(0, 123, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(0, 123, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+.dots-pattern {
+  background-color: transparent;
+  background-image: 
+    radial-gradient(rgba(10, 35, 66, 0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+  background-position: 0 0;
+}
+
+.grid-pattern {
+  background-color: transparent;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 1.5rem;
+  }
+  
+  .hero-video-container {
+    min-height: calc(100vh - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 1rem;
   }
 }
