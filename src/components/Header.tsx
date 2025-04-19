@@ -8,6 +8,13 @@ import { FaBars } from 'react-icons/fa'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+// Add type declaration for Calendly
+declare global {
+  interface Window {
+    Calendly?: any;
+  }
+}
+
 type NavLinkProps = {
   href: string;
   children: React.ReactNode;
@@ -69,6 +76,16 @@ export function Header({ onShowSplash }: HeaderProps) {
     { name: 'Onboarding', path: '/onboarding' },
     { name: 'Contact', path: '/contact' },
   ];
+
+  // Function to open Calendly popup
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/d/cq4j-vcb-th4'
+      });
+      return false;
+    }
+  };
 
   // Check if current page is homepage
   useEffect(() => {
@@ -172,21 +189,20 @@ export function Header({ onShowSplash }: HeaderProps) {
                 {item.name}
               </NavLink>
             ))}
-            {/* CTA Button */}
-            <Link href="/contact" style={{ textDecoration: 'none' }}>
-              <Button 
-                bg={isHomePage ? "var(--lex-insight-blue)" : "var(--lex-deep-blue)"}
-                color="white"
-                _hover={{
-                  bg: isHomePage ? "#0069d9" : "#133c76"
-                }}
-                size="md"
-                className="ui-text"
-                boxShadow={isHomePage ? "0 2px 6px rgba(0,0,0,0.3)" : "none"}
-              >
-                Schedule Call
-              </Button>
-            </Link>
+            {/* CTA Button - changed to use Calendly popup */}
+            <Button 
+              bg={isHomePage ? "var(--lex-insight-blue)" : "var(--lex-deep-blue)"}
+              color="white"
+              _hover={{
+                bg: isHomePage ? "#0069d9" : "#133c76"
+              }}
+              size="md"
+              className="ui-text"
+              boxShadow={isHomePage ? "0 2px 6px rgba(0,0,0,0.3)" : "none"}
+              onClick={openCalendly}
+            >
+              Schedule Call
+            </Button>
           </HStack>
 
           {/* Mobile Navigation Icon */}
@@ -226,21 +242,24 @@ export function Header({ onShowSplash }: HeaderProps) {
                       {item.name}
                     </NavLink>
                   ))}
-                  <Link href="/contact" style={{ textDecoration: 'none' }}>
-                    <Button 
-                      bg={isHomePage ? "var(--lex-insight-blue)" : "var(--lex-deep-blue)"}
-                      color="white"
-                      _hover={{
-                        bg: isHomePage ? "#0069d9" : "#133c76"
-                      }}
-                      size="md"
-                      width="100%"
-                      mt={2}
-                      className="ui-text"
-                    >
-                      Schedule Call
-                    </Button>
-                  </Link>
+                  {/* CTA Button - Changed to use Calendly popup */}
+                  <Button 
+                    bg={isHomePage ? "var(--lex-insight-blue)" : "var(--lex-deep-blue)"}
+                    color="white"
+                    _hover={{
+                      bg: isHomePage ? "#0069d9" : "#133c76"
+                    }}
+                    size="md"
+                    width="100%"
+                    mt={2}
+                    className="ui-text"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      openCalendly();
+                    }}
+                  >
+                    Schedule Call
+                  </Button>
                 </VStack>
               </Box>
             </Box>

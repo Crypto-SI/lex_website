@@ -5,6 +5,7 @@ import { Box } from "@chakra-ui/react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SplashIntro } from "@/components/SplashIntro";
+import Script from 'next/script';
 
 export default function ClientLayout({
   children,
@@ -32,6 +33,18 @@ export default function ClientLayout({
     }
   }, []);
 
+  // Initialize Calendly styles
+  useEffect(() => {
+    // Add Calendly styles (typically done by the Calendly script, but adding manually for completeness)
+    if (typeof window !== 'undefined' && !document.getElementById('calendly-styles')) {
+      const style = document.createElement('link');
+      style.id = 'calendly-styles';
+      style.rel = 'stylesheet';
+      style.href = 'https://assets.calendly.com/assets/external/widget.css';
+      document.head.appendChild(style);
+    }
+  }, []);
+
   const handleShowSplash = () => {
     setShowSplash(true);
   };
@@ -48,6 +61,12 @@ export default function ClientLayout({
         {children}
       </Box>
       <Footer />
+      
+      {/* Calendly widget script - load it globally but lazyOnload to not block rendering */}
+      <Script 
+        src="https://assets.calendly.com/assets/external/widget.js" 
+        strategy="lazyOnload" 
+      />
     </>
   );
 } 
