@@ -646,11 +646,11 @@ export default function AboutPage() {
                 </Box>
                 <VStack alignItems="flex-start" gap={6} textAlign="left" pt={6}>
                   <Text className="body-text" fontSize="lg" fontStyle="italic" color="var(--lex-slate-grey)">
-                    "Lex's approach to crypto education completely transformed how I view digital assets as part of my clients' portfolios. Their structured frameworks provided clarity where there was confusion, and confidence where there was uncertainty."
+                    "Highly recommend Financial Navigator! Alex helped me cut through the noise in my memecoin portfolio, narrowing it down to four strong picks with clear, technical reasoning and take-profit targets. He even provided exclusive insights and a detailed follow-up report. Alex's structured approach and deep knowledge made a real difference. I'll definitely work with him again."
                   </Text>
                   <Box>
-                    <Text fontWeight="bold" className="heading-text" color="var(--lex-deep-blue)">Michael R.</Text>
-                    <Text className="ui-text" color="var(--lex-insight-blue)">Financial Advisor, Boston</Text>
+                    <Text fontWeight="bold" className="heading-text" color="var(--lex-deep-blue)">Singh</Text>
+                    <Text className="ui-text" color="var(--lex-insight-blue)">Memecoin Investor</Text>
                   </Box>
                 </VStack>
               </Box>

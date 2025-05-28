@@ -15,28 +15,18 @@ const clientCapacity = {
 
 export default function ServicesPage() {
   const [flippedCards, setFlippedCards] = useState<{[key: string]: boolean}>({
+    starter: false,
     quarterly: false,
-    sixMonth: false
+    sixMonth: false,
+    legacy: false
   });
 
   const handleCardFlip = (cardId: string, e: React.MouseEvent) => {
-    // Stop any event bubbling
     if (e) {
       e.stopPropagation();
       e.preventDefault();
     }
-    
-    console.log(`Flipping card: ${cardId}, current state:`, flippedCards[cardId]);
-    
-    // Toggle the card state
-    setFlippedCards(prev => {
-      const updated = {
-        ...prev,
-        [cardId]: !prev[cardId]
-      };
-      console.log("Updated state:", updated);
-      return updated;
-    });
+    setFlippedCards(prev => ({ ...prev, [cardId]: !prev[cardId] }));
   };
 
   return (
@@ -370,129 +360,92 @@ export default function ServicesPage() {
               </VStack>
             </VStack>
             
-            <SimpleGrid columns={{ base: 1, lg: 2 }} gap={10} py={8} position="relative" zIndex={1}>
-              {/* Quarterly Plan */}
-              <Box 
+            <SimpleGrid
+              columns={{ base: 1, md: 3 }}
+              gap={10}
+              py={8}
+              position="relative"
+              zIndex={1}
+              width="100%"
+            >
+              {/* Starter Strategy Card (Left) */}
+              <Box
                 minH="700px"
                 position="relative"
-                className={`service-card ${flippedCards.quarterly ? 'card-flipped' : ''}`}
-                onClick={(e) => {
-                  handleCardFlip('quarterly', e);
-                }}
+                className={`service-card ${flippedCards.starter ? 'card-flipped' : ''}`}
+                onClick={(e) => handleCardFlip('starter', e)}
+                bg="white"
+                borderRadius="xl"
+                boxShadow="xl"
+                border="1px solid"
+                borderColor="var(--lex-light-grey)"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
               >
                 <Box className="card-inner">
                   {/* Front of Card */}
-                  <Box 
+                  <Box
                     className="card-front quarterly-card-front"
-                    borderRadius="xl" 
-                    boxShadow="xl" 
-                    bg="white" 
+                    borderRadius="xl"
+                    boxShadow="xl"
+                    bg="white"
                     border="1px solid"
                     borderColor="var(--lex-light-grey)"
                   >
                     <VStack gap={8} alignItems="center" justifyContent="center">
                       <Heading as="h3" size="xl" className="heading-text" color="var(--lex-deep-blue)">
-                        Quarterly Plan
+                        Starter Strategy
                       </Heading>
-                      
                       <Box textAlign="center">
-                        <Heading size="4xl" color="var(--lex-insight-blue)" className="heading-text" lineHeight="1">
-                          $850
+                        <Heading size="4xl" color="green.400" className="heading-text" lineHeight="1">
+                          FREE
                         </Heading>
                         <Text fontSize="xl" color="var(--lex-slate-grey)" className="body-text">
-                          per quarter
+                          Intro Session
                         </Text>
                       </Box>
-                      
                       <Text mt={4} color="var(--lex-slate-grey)" fontSize="md" fontStyle="italic">
                         Click to view details
                       </Text>
                     </VStack>
-                    
                     <Box className="flip-hint">
                       <Text fontSize="sm">Click to flip</Text>
                       <Icon as={FaSync} boxSize={3} />
                     </Box>
                   </Box>
-                  
                   {/* Back of Card */}
-                  <Box 
+                  <Box
                     className="card-back"
-                    p={10} 
-                    borderRadius="xl" 
-                    boxShadow="xl" 
+                    p={10}
+                    borderRadius="xl"
+                    boxShadow="xl"
                     bg="white"
-                    border="2px solid"
-                    borderColor="var(--lex-insight-blue)"
+                    border="1px solid"
+                    borderColor="var(--lex-light-grey)"
                   >
-                    <Box 
+                    <Box
                       className="back-flip-hint"
-                      onClick={(e) => {
-                        handleCardFlip('quarterly', e);
-                      }}
+                      onClick={(e) => handleCardFlip('starter', e)}
                     >
                       <Text fontSize="sm">Flip back</Text>
                       <Icon as={FaSync} boxSize={3} />
                     </Box>
-                    
                     <VStack gap={8} alignItems="flex-start">
                       <Box>
-                        <Heading as="h3" size="lg" mb={3} className="heading-text" color="var(--lex-deep-blue)">Quarterly Consulting Plan</Heading>
+                        <Heading as="h3" size="lg" mb={3} className="heading-text" color="var(--lex-deep-blue)">Starter Strategy Introduction Session</Heading>
                         <Text className="body-text" fontSize="lg" color="var(--lex-slate-grey)">
-                          Three months of structured educational consulting
+                          This free session is designed to understand your requirements, goals, and current situation. We'll discuss your investment experience, objectives, and challenges. The aim is to see if our consulting approach is a good fit and how we can best help you. There is no obligation—just a friendly, informative conversation to explore your needs and answer your questions.
                         </Text>
                       </Box>
-                      
-                      <HStack alignItems="flex-end" gap={4}>
-                        <Heading size="2xl" color="var(--lex-insight-blue)" className="heading-text">
-                          $850
-                        </Heading>
-                        <Text fontSize="lg" color="var(--lex-slate-grey)" pb={1} className="body-text">per quarter</Text>
-                      </HStack>
-                      
-                      <VStack width="100%" py={4} gap={4} alignItems="flex-start">
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">2 Calls per Month with Expert Consultants (Up to 1 hour each)</Text>
-                        </HStack>
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">Market insights and trade discussions</Text>
-                        </HStack>
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">Market Update Reports and Risk Management Strategies</Text>
-                        </HStack>
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">Direct Q&A Support via Telegram</Text>
-                        </HStack>
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">Continuous support throughout the plan duration</Text>
-                        </HStack>
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">Access to in-person meetups (where possible)</Text>
-                        </HStack>
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">Access to trade alerts</Text>
-                        </HStack>
-                        <HStack alignItems="flex-start" gap={3}>
-                          <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
-                          <Text className="body-text" color="var(--lex-slate-grey)">Access to expert consultants</Text>
-                        </HStack>
-                      </VStack>
-                      
                       <Box width="100%" pt={4}>
-                        <Link 
-                          href="/contact" 
+                        <Link
+                          href="/contact"
                           style={{ width: '100%', display: 'block' }}
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <Button 
-                            bg="var(--lex-insight-blue)"
+                          <Button
+                            bg="green.400"
                             color="white"
                             size="lg"
                             className="ui-text"
@@ -501,22 +454,22 @@ export default function ServicesPage() {
                             fontSize="md"
                             fontWeight="600"
                             borderRadius="full"
-                            boxShadow="0 4px 15px rgba(0, 123, 255, 0.3)"
+                            boxShadow="0 4px 15px rgba(72, 187, 120, 0.3)"
                             _hover={{
-                              bg: "#0069d9",
+                              bg: "green.500",
                               transform: "translateY(-2px)",
-                              boxShadow: "0 6px 20px rgba(0, 123, 255, 0.4)"
+                              boxShadow: "0 6px 20px rgba(72, 187, 120, 0.4)"
                             }}
                             _active={{
-                              bg: "#0056b3",
+                              bg: "green.600",
                               transform: "translateY(0)",
-                              boxShadow: "0 2px 10px rgba(0, 123, 255, 0.3)"
+                              boxShadow: "0 2px 10px rgba(72, 187, 120, 0.3)"
                             }}
                             transition="all 0.2s ease"
                             onClick={(e) => e.stopPropagation()}
                           >
                             <HStack gap={2} width="100%" justifyContent="center">
-                              <Text>Get Started</Text>
+                              <Text>Book Your Free Session</Text>
                               <Icon as={FaArrowRight} />
                             </HStack>
                           </Button>
@@ -526,30 +479,40 @@ export default function ServicesPage() {
                   </Box>
                 </Box>
               </Box>
-              
-              {/* 6-Month Plan */}
-              <Box 
-                minH="700px"
+
+              {/* 6-Month Plan (Middle, Larger Card) */}
+              <Box
+                minH="750px"
                 position="relative"
                 className={`service-card ${flippedCards.sixMonth ? 'card-flipped' : ''}`}
                 onClick={(e) => {
                   handleCardFlip('sixMonth', e);
                 }}
+                bg="white"
+                borderRadius="2xl"
+                boxShadow="2xl"
+                border="2px solid"
+                borderColor="var(--lex-insight-blue)"
+                gridColumn={{ base: 'auto', md: '2' }}
+                // Make the middle card visually larger
+                transform={{ base: 'none', md: 'scale(1.08)' }}
+                zIndex={2}
+                _hover={{ zIndex: 3 }}
               >
                 <Box className="card-inner">
                   {/* Front of Card */}
-                  <Box 
+                  <Box
                     className="card-front sixmonth-card-front"
-                    borderRadius="xl" 
-                    boxShadow="xl" 
-                    bg="white" 
+                    borderRadius="2xl"
+                    boxShadow="2xl"
+                    bg="white"
                     border="2px solid"
                     borderColor="var(--lex-insight-blue)"
                   >
-                    <Badge 
-                      position="absolute" 
-                      top={5} 
-                      right={5} 
+                    <Badge
+                      position="absolute"
+                      top={5}
+                      right={5}
                       colorScheme="blue"
                       px={3}
                       py={1}
@@ -560,43 +523,38 @@ export default function ServicesPage() {
                     >
                       MOST POPULAR
                     </Badge>
-                    
                     <VStack gap={8} alignItems="center" justifyContent="center">
                       <Heading as="h3" size="xl" className="heading-text" color="var(--lex-deep-blue)">
-                        6-Month Plan
+                        Momentum
                       </Heading>
-                      
                       <Box textAlign="center">
                         <Heading size="4xl" color="var(--lex-insight-blue)" className="heading-text" lineHeight="1">
-                          $1,500
+                          $1,999
                         </Heading>
                         <Text fontSize="xl" color="var(--lex-slate-grey)" className="body-text">
                           for 6 months
                         </Text>
                       </Box>
-                      
                       <Text mt={4} color="var(--lex-slate-grey)" fontSize="md" fontStyle="italic">
                         Click to view details
                       </Text>
                     </VStack>
-                    
                     <Box className="flip-hint">
                       <Text fontSize="sm">Click to flip</Text>
                       <Icon as={FaSync} boxSize={3} />
                     </Box>
                   </Box>
-                  
                   {/* Back of Card */}
-                  <Box 
+                  <Box
                     className="card-back"
-                    p={10} 
-                    borderRadius="xl" 
-                    boxShadow="xl" 
+                    p={10}
+                    borderRadius="2xl"
+                    boxShadow="2xl"
                     bg="white"
                     border="2px solid"
                     borderColor="var(--lex-insight-blue)"
                   >
-                    <Box 
+                    <Box
                       className="back-flip-hint"
                       onClick={(e) => {
                         handleCardFlip('sixMonth', e);
@@ -605,22 +563,19 @@ export default function ServicesPage() {
                       <Text fontSize="sm">Flip back</Text>
                       <Icon as={FaSync} boxSize={3} />
                     </Box>
-                    
                     <VStack gap={8} alignItems="flex-start">
                       <Box>
-                        <Heading as="h3" size="lg" mb={3} className="heading-text" color="var(--lex-deep-blue)">6-Month Consulting Plan</Heading>
+                        <Heading as="h3" size="lg" mb={3} className="heading-text" color="var(--lex-deep-blue)">Momentum Consulting Plan</Heading>
                         <Text className="body-text" fontSize="lg" color="var(--lex-slate-grey)">
                           Six months of comprehensive educational support
                         </Text>
                       </Box>
-                      
                       <HStack alignItems="flex-end" gap={4}>
                         <Heading size="2xl" color="var(--lex-insight-blue)" className="heading-text">
-                          $1,500
+                          $1,999
                         </Heading>
                         <Text fontSize="lg" color="var(--lex-slate-grey)" pb={1} className="body-text">for 6 months</Text>
                       </HStack>
-                      
                       <VStack width="100%" py={4} gap={4} alignItems="flex-start">
                         <HStack alignItems="flex-start" gap={3}>
                           <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
@@ -651,14 +606,13 @@ export default function ServicesPage() {
                           <Text className="body-text" color="var(--lex-slate-grey)">Access to Portfolio Management Assistant Services</Text>
                         </HStack>
                       </VStack>
-                      
                       <Box width="100%" pt={4}>
-                        <Link 
-                          href="/contact" 
+                        <Link
+                          href="/contact"
                           style={{ width: '100%', display: 'block' }}
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <Button 
+                          <Button
                             bg="var(--lex-deep-blue)"
                             color="white"
                             size="lg"
@@ -684,6 +638,151 @@ export default function ServicesPage() {
                           >
                             <HStack gap={2} width="100%" justifyContent="center">
                               <Text>Get Started</Text>
+                              <Icon as={FaArrowRight} />
+                            </HStack>
+                          </Button>
+                        </Link>
+                      </Box>
+                    </VStack>
+                  </Box>
+                </Box>
+              </Box>
+
+              {/* Right Legacy Card */}
+              <Box
+                minH="700px"
+                position="relative"
+                className={`service-card ${flippedCards.legacy ? 'card-flipped' : ''}`}
+                onClick={(e) => handleCardFlip('legacy', e)}
+                bg="white"
+                borderRadius="xl"
+                boxShadow="xl"
+                border="1px solid"
+                borderColor="var(--lex-light-grey)"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Box className="card-inner">
+                  {/* Front of Card (match 6-Month Plan style) */}
+                  <Box
+                    className="card-front sixmonth-card-front"
+                    borderRadius="xl"
+                    boxShadow="xl"
+                    bg="white"
+                    border="2px solid"
+                    borderColor="var(--lex-deep-blue)"
+                  >
+                    <Badge
+                      position="absolute"
+                      top={5}
+                      right={5}
+                      colorScheme="purple"
+                      px={3}
+                      py={1}
+                      borderRadius="md"
+                      fontSize="sm"
+                      fontWeight="medium"
+                      className="ui-text"
+                    >
+                      PREMIUM
+                    </Badge>
+                    <VStack gap={8} alignItems="center" justifyContent="center">
+                      <Heading as="h3" size="xl" className="heading-text" color="var(--lex-deep-blue)">
+                        Legacy
+                      </Heading>
+                      <Text fontSize="lg" color="var(--lex-insight-blue)" fontWeight="bold">For Family Offices</Text>
+                      <Box textAlign="center">
+                        <Heading size="4xl" color="var(--lex-deep-blue)" className="heading-text" lineHeight="1">
+                          $18,000
+                        </Heading>
+                        <Text fontSize="xl" color="var(--lex-slate-grey)" className="body-text">
+                          USD
+                        </Text>
+                      </Box>
+                      <Text mt={4} color="var(--lex-slate-grey)" fontSize="md" fontStyle="italic">
+                        Click to view details
+                      </Text>
+                    </VStack>
+                    <Box className="flip-hint">
+                      <Text fontSize="sm">Click to flip</Text>
+                      <Icon as={FaSync} boxSize={3} />
+                    </Box>
+                  </Box>
+                  {/* Back of Card */}
+                  <Box
+                    className="card-back"
+                    p={10}
+                    borderRadius="xl"
+                    boxShadow="xl"
+                    bg="white"
+                    border="1px solid"
+                    borderColor="var(--lex-light-grey)"
+                  >
+                    <Box
+                      className="back-flip-hint"
+                      onClick={(e) => handleCardFlip('legacy', e)}
+                    >
+                      <Text fontSize="sm">Flip back</Text>
+                      <Icon as={FaSync} boxSize={3} />
+                    </Box>
+                    <VStack gap={6} alignItems="flex-start">
+                      <Box>
+                        <Heading as="h3" size="lg" mb={3} className="heading-text" color="var(--lex-deep-blue)">What's included</Heading>
+                        <Text fontSize="md" color="var(--lex-slate-grey)" mb={2}>
+                          HNW investors & businesses interested in incorporating blockchain
+                        </Text>
+                        <VStack alignItems="flex-start" gap={3} mt={2}>
+                          <HStack alignItems="flex-start" gap={3}>
+                            <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
+                            <Text className="body-text" color="var(--lex-slate-grey)">Bespoke HNWI & Corporate Strategy</Text>
+                          </HStack>
+                          <HStack alignItems="flex-start" gap={3}>
+                            <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
+                            <Text className="body-text" color="var(--lex-slate-grey)">Comprehensive Structuring</Text>
+                          </HStack>
+                          <HStack alignItems="flex-start" gap={3}>
+                            <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
+                            <Text className="body-text" color="var(--lex-slate-grey)">Dedicated Teams</Text>
+                          </HStack>
+                          <HStack alignItems="flex-start" gap={3}>
+                            <Box color="var(--lex-insight-blue)" mt={1}><FaCheckCircle /></Box>
+                            <Text className="body-text" color="var(--lex-slate-grey)">Blockchain Deployment Support</Text>
+                          </HStack>
+                        </VStack>
+                      </Box>
+                      <Box width="100%" pt={4}>
+                        <Link
+                          href="/contact"
+                          style={{ width: '100%', display: 'block' }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Button
+                            bg="var(--lex-deep-blue)"
+                            color="white"
+                            size="lg"
+                            className="ui-text"
+                            width="100%"
+                            height="60px"
+                            fontSize="md"
+                            fontWeight="600"
+                            borderRadius="full"
+                            boxShadow="0 4px 15px rgba(10, 35, 66, 0.3)"
+                            _hover={{
+                              bg: "#133c76",
+                              transform: "translateY(-2px)",
+                              boxShadow: "0 6px 20px rgba(10, 35, 66, 0.4)"
+                            }}
+                            _active={{
+                              bg: "#0d2954",
+                              transform: "translateY(0)",
+                              boxShadow: "0 2px 10px rgba(10, 35, 66, 0.3)"
+                            }}
+                            transition="all 0.2s ease"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <HStack gap={2} width="100%" justifyContent="center">
+                              <Text>Contact for Legacy Plan</Text>
                               <Icon as={FaArrowRight} />
                             </HStack>
                           </Button>
