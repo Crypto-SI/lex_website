@@ -1,34 +1,63 @@
 'use client'
 
 import { 
-  Box, Container, Heading, Text, VStack, 
-  Input, Textarea, Button
+  Box, Container, Heading, Text, VStack, Button
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import dynamic from 'next/dynamic'
+import { StructuredData } from '@/components/seo'
 
-// Add a type declaration for the Calendly global
-declare global {
-  interface Window {
-    Calendly?: any;
-  }
-}
+// Lazy load heavy components
+const CalendlyPopup = dynamic(() => import('@/components/media').then(mod => ({ default: mod.CalendlyPopup })), {
+  ssr: false,
+  loading: () => <Box p={8} textAlign="center">Loading calendar...</Box>
+});
+
+const SecureContactForm = dynamic(() => import('@/components/forms').then(mod => ({ default: mod.SecureContactForm })), {
+  ssr: false,
+  loading: () => <Box p={8} textAlign="center">Loading form...</Box>
+});
+import { generateBreadcrumbStructuredData, businessInfo } from '../metadata'
 
 export default function ContactPage() {
-  // Function to open Calendly popup
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cq4j-vcb-th4'
-      });
-      return false;
+  const calendlyUrl = 'https://calendly.com/d/cq4j-vcb-th4'
+
+  // Structured data for contact page
+  const contactStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    mainEntity: {
+      '@type': 'FinancialService',
+      name: businessInfo.name,
+      url: businessInfo.url,
+      telephone: businessInfo.telephone,
+      email: businessInfo.email,
+      address: {
+        '@type': 'PostalAddress',
+        ...businessInfo.address
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: businessInfo.telephone,
+        email: businessInfo.email,
+        contactType: 'Customer Service',
+        availableLanguage: ['English'],
+        areaServed: 'US'
+      }
     }
   };
-  
-  // No need for Calendly styles useEffect as it's now in the global layout
+
+  // Breadcrumb structured data
+  const breadcrumbData = generateBreadcrumbStructuredData([
+    { name: 'Home', url: 'https://lexconsulting.com' },
+    { name: 'Contact', url: 'https://lexconsulting.com/contact' }
+  ]);
 
   return (
     <>
-      <Box py={{ base: 20, md: 24 }} width="100%">
+      {/* Structured Data */}
+      <StructuredData data={contactStructuredData} id="contact-data" />
+      <StructuredData data={breadcrumbData} id="breadcrumb-data" />
+      <Box py={{ base: 20, md: 24 }} width="100%" display="flex" justifyContent="center">
         <Container 
           maxW="container.xl" 
           centerContent 
@@ -37,8 +66,9 @@ export default function ContactPage() {
           display="flex"
           flexDirection="column"
           alignItems="center"
+          justifyContent="center"
         >
-          <VStack gap={10} alignItems="center" width="100%" maxW="1200px">
+          <VStack gap={10} alignItems="center" width="100%" maxW="1200px" mx="auto">
             {/* Header Section */}
             <VStack gap={4} alignItems="center" textAlign="center">
               <Heading as="h1" size="2xl" className="heading-text text-center">Contact Us</Heading>
@@ -47,102 +77,65 @@ export default function ContactPage() {
               </Text>
             </VStack>
             
-            {/* Simplified Form Section without FormControl */}
-            <Box 
-              py={8} 
-              px={{ base: 6, md: 10 }} 
-              bg="white" 
-              borderRadius="lg" 
-              boxShadow="md"
-              border="1px solid"
-              borderColor="gray.100"
-              width="100%"
-              maxW="container.lg"
-              textAlign="left" 
-            >
-              <Heading as="h2" size="lg" mb={6} textAlign="center">General Inquiries</Heading>
-              <Text mb={6} textAlign="center">Have a question not related to scheduling? Send us a message here.</Text>
-              <form action="https://formspree.io/f/meoaygjn" method="POST">
-                <VStack gap={6} alignItems="stretch" width="100%"> 
-                  {/* Name Field */}
-                  <Box>
-                    <label htmlFor="name" style={{ fontWeight: "medium", marginBottom: "8px", display: "block" }}>Name*</label>
-                    <Input
-                      id="name"
-                      name="name" 
-                      placeholder="Your name"
-                      required
-                    />
-                  </Box>
-                  
-                  {/* Email Field */}
-                  <Box>
-                    <label htmlFor="email" style={{ fontWeight: "medium", marginBottom: "8px", display: "block" }}>Email*</label>
-                    <Input
-                      id="email"
-                      name="email" 
-                      type="email"
-                      placeholder="Your email address"
-                      required
-                    />
-                  </Box>
-
-                  {/* Message Field */}
-                  <Box>
-                    <label htmlFor="message" style={{ fontWeight: "medium", marginBottom: "8px", display: "block" }}>Message*</label>
-                    <Textarea
-                      id="message"
-                      name="message" 
-                      placeholder="Your question or message"
-                      rows={5}
-                      required
-                    />
-                  </Box>
-                  
-                  <Button 
-                    type="submit"
-                    colorScheme="brand" 
-                    size="lg"
-                    width="full"
-                    mt={4}
-                  >
-                    Send Message
-                  </Button>
-                </VStack>
-              </form>
-            </Box>
+            {/* Secure Contact Form */}
+            <SecureContactForm 
+              onSuccess={() => {
+                console.log('Form submitted successfully');
+              }}
+              onError={(error) => {
+                console.error('Form submission error:', error);
+              }}
+            />
             
             {/* Simple horizontal rule instead of Divider */}
             <Box as="hr" my={8} width="100%" borderColor="gray.200" />
             
             {/* Calendly Button Section */}
             <Box 
+              as="section"
               width="100%" 
               maxW="800px"
               mx="auto" 
               textAlign="center"
               py={12}
+              aria-labelledby="scheduling-heading"
             >
               <VStack gap={6}>
-                <Heading as="h2" size="xl" mb={2}>Ready to Talk?</Heading>
+                <Heading as="h2" id="scheduling-heading" size="xl" mb={2}>Ready to Talk?</Heading>
                 <Text fontSize="lg" maxW="600px">
                   Schedule a no-obligation discovery call to discuss how we can help you navigate complex investment landscapes.
                 </Text>
-                <Button 
-                  size="lg" 
-                  height="70px"
-                  px={12}
-                  fontSize="xl"
-                  bg="var(--lex-deep-blue)" 
-                  color="white"
-                  _hover={{ bg: "#133c76", transform: "translateY(-3px)" }}
-                  _active={{ bg: "#0a2342" }}
-                  boxShadow="md"
-                  transition="all 0.3s ease"
-                  onClick={openCalendly}
+                <CalendlyPopup 
+                  url={calendlyUrl}
+                  onError={(error) => {
+                    console.error('Calendly error:', error)
+                    window.open(calendlyUrl, '_blank', 'width=800,height=600')
+                  }}
                 >
-                  Schedule a Discovery Call
-                </Button>
+                  {({ onClick, isLoading }) => (
+                    <Button 
+                      size="lg" 
+                      height="70px"
+                      px={12}
+                      fontSize="xl"
+                      bg="var(--lex-deep-blue)" 
+                      color="white"
+                      _hover={{ bg: "#133c76", transform: "translateY(-3px)" }}
+                      _active={{ bg: "#0a2342" }}
+                      boxShadow="md"
+                      transition="all 0.3s ease"
+                      onClick={onClick}
+                      loading={isLoading}
+                      loadingText="Loading..."
+                      aria-describedby="calendly-description"
+                    >
+                      Schedule a Discovery Call
+                    </Button>
+                  )}
+                </CalendlyPopup>
+                <Text id="calendly-description" fontSize="sm" color="gray.600" display="none">
+                  Opens Calendly scheduling widget in a popup window
+                </Text>
               </VStack>
             </Box>
           </VStack>

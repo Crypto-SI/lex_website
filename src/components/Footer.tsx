@@ -3,6 +3,7 @@
 import { Box, Text, VStack, HStack, Grid, GridItem } from '@chakra-ui/react'
 import Link from 'next/link'
 import { FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { ScreenReaderOnly } from '@/components/accessibility'
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -33,7 +34,7 @@ export function Footer() {
   ];
 
   return (
-    <Box as="footer" bg="var(--lex-deep-blue)" color="var(--lex-light-grey)" py={10} mt={10}> 
+    <Box as="footer" bg="brand.primary" color="gray.100" py={10} mt={10}> 
       <Box className="container">
         <Grid 
           templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }} 
@@ -55,6 +56,13 @@ export function Footer() {
               {/* Social Links */}
               <HStack gap={4}>
                 {socialLinks.map((link, index) => {
+                  const getAriaLabel = (icon: any) => {
+                    if (icon === FaTwitter) return 'Follow us on Twitter';
+                    if (icon === FaLinkedin) return 'Connect with us on LinkedIn';
+                    if (icon === FaEnvelope) return 'Send us an email';
+                    return 'Social media link';
+                  };
+
                   if (link.href.startsWith('http') || link.href.startsWith('mailto')) {
                     return (
                       <a 
@@ -62,9 +70,32 @@ export function Footer() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: '#A0AEC0', display: 'flex' }}
+                        style={{ 
+                          color: '#A0AEC0', 
+                          display: 'flex',
+                          padding: '8px',
+                          borderRadius: '4px',
+                          transition: 'all 0.2s'
+                        }}
+                        aria-label={getAriaLabel(link.icon)}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--chakra-colors-brand-accent)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = '#A0AEC0';
+                        }}
+                        onFocus={(e) => {
+                          e.currentTarget.style.outline = '2px solid var(--chakra-colors-brand-accent)';
+                          e.currentTarget.style.outlineOffset = '2px';
+                        }}
+                        onBlur={(e) => {
+                          e.currentTarget.style.outline = 'none';
+                        }}
                       >
-                        <link.icon size={20} />
+                        <link.icon size={20} aria-hidden="true" />
+                        <ScreenReaderOnly>
+                          {getAriaLabel(link.icon)}
+                        </ScreenReaderOnly>
                       </a>
                     );
                   } else {
@@ -72,9 +103,28 @@ export function Footer() {
                       <Link 
                         key={index} 
                         href={link.href}
-                        style={{ color: '#A0AEC0', display: 'flex' }}
+                        style={{ 
+                          color: '#A0AEC0', 
+                          display: 'flex',
+                          padding: '8px',
+                          borderRadius: '4px',
+                          transition: 'all 0.2s'
+                        }}
                       >
-                        <link.icon size={20} />
+                        <Box
+                          _hover={{ color: 'brand.accent' }}
+                          _focus={{
+                            outline: '2px solid',
+                            outlineColor: 'brand.accent',
+                            outlineOffset: '2px'
+                          }}
+                          aria-label={getAriaLabel(link.icon)}
+                        >
+                          <link.icon size={20} aria-hidden="true" />
+                          <ScreenReaderOnly>
+                            {getAriaLabel(link.icon)}
+                          </ScreenReaderOnly>
+                        </Box>
                       </Link>
                     );
                   }
@@ -101,8 +151,15 @@ export function Footer() {
                     }}
                   >
                     <Box 
-                      _hover={{ color: 'var(--lex-insight-blue)' }}
+                      _hover={{ color: 'brand.accent' }}
+                      _focus={{
+                        outline: '2px solid',
+                        outlineColor: 'brand.accent',
+                        outlineOffset: '2px'
+                      }}
                       className="ui-text"
+                      p={1}
+                      borderRadius="sm"
                     >
                       {link.name}
                     </Box>

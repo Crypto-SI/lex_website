@@ -1,0 +1,89 @@
+{
+  "id": "contact",
+  "slug": "/contact",
+  "title": "Contact Us - Lex Consulting",
+  "seo": {
+    "title": "Contact Lex Consulting - Schedule Your Investment Education Consultation",
+    "description": "Ready to discuss your investment education needs? Contact Lex Consulting for general inquiries or schedule a discovery call to get started.",
+    "keywords": ["contact lex consulting", "investment consultation", "schedule call", "financial education inquiry"],
+    "ogTitle": "Contact Lex Consulting - Schedule Your Investment Education Consultation",
+    "ogDescription": "Ready to discuss your investment education needs? Contact us for general inquiries or schedule a discovery call.",
+    "twitterCard": "summary_large_image"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "title": "Contact Us",
+      "subtitle": "Ready to discuss your needs? Use the form below for general inquiries or schedule a discovery call.",
+      "background": {
+        "color": "white"
+      }
+    },
+    {
+      "id": "contact-form",
+      "type": "custom",
+      "title": "General Inquiries",
+      "content": {
+        "type": "contact-form",
+        "description": "Have a question not related to scheduling? Send us a message here.",
+        "formAction": "https://formspree.io/f/meoaygjn",
+        "fields": [
+          {
+            "id": "name",
+            "type": "text",
+            "label": "Name",
+            "placeholder": "Your name",
+            "required": true
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email",
+            "placeholder": "Your email address",
+            "required": true
+          },
+          {
+            "id": "message",
+            "type": "textarea",
+            "label": "Message",
+            "placeholder": "Your question or message",
+            "rows": 5,
+            "required": true
+          }
+        ],
+        "submitText": "Send Message"
+      },
+      "background": {
+        "color": "white"
+      }
+    },
+    {
+      "id": "calendly-section",
+      "type": "cta",
+      "title": "Ready to Talk?",
+      "content": {
+        "description": "Schedule a no-obligation discovery call to discuss how we can help you navigate complex investment landscapes.",
+        "calendlyUrl": "https://calendly.com/d/cq4j-vcb-th4",
+        "cta": {
+          "id": "schedule-discovery-call",
+          "text": "Schedule a Discovery Call",
+          "href": "#calendly",
+          "variant": "primary",
+          "ariaLabel": "Schedule a discovery call with Lex Consulting"
+        }
+      },
+      "background": {
+        "color": "white"
+      }
+    }
+  ],
+  "metadata": {
+    "id": "contact-page",
+    "title": "Contact Page Content",
+    "description": "Contact page content including form and scheduling options",
+    "lastModified": "2024-01-15T10:00:00Z",
+    "version": "1.0.0",
+    "tags": ["contact", "form", "calendly", "inquiry"]
+  }
+}

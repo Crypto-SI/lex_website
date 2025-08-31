@@ -7,6 +7,8 @@ import {
 } from '@chakra-ui/react'
 import { FaCheckCircle, FaArrowRight, FaSync, FaInfoCircle, FaCalendarAlt } from 'react-icons/fa'
 import Link from 'next/link'
+import { StructuredData } from '@/components/seo'
+import { generateServiceStructuredData, generateBreadcrumbStructuredData } from '../metadata'
 
 // This would eventually come from a CMS or API
 const clientCapacity = {
@@ -21,6 +23,34 @@ export default function ServicesPage() {
     legacy: false
   });
 
+  // Structured data for services
+  const servicesStructuredData = [
+    generateServiceStructuredData(
+      'Starter Strategy Introduction Session',
+      'Free consultation session to understand your investment goals and determine if our educational approach is right for you.',
+      'https://lexconsulting.com/services#starter',
+      '0'
+    ),
+    generateServiceStructuredData(
+      'Momentum Consulting Plan',
+      'Six months of comprehensive educational support including regular consultations, strategic wealth allocation reviews, and access to premium data.',
+      'https://lexconsulting.com/services#momentum',
+      '5999'
+    ),
+    generateServiceStructuredData(
+      'Legacy Plan',
+      'Premium consulting for family offices and high-net-worth individuals including bespoke strategy, comprehensive structuring, and dedicated teams.',
+      'https://lexconsulting.com/services#legacy',
+      '18000'
+    )
+  ];
+
+  // Breadcrumb structured data
+  const breadcrumbData = generateBreadcrumbStructuredData([
+    { name: 'Home', url: 'https://lexconsulting.com' },
+    { name: 'Services', url: 'https://lexconsulting.com/services' }
+  ]);
+
   const handleCardFlip = (cardId: string, e: React.MouseEvent) => {
     if (e) {
       e.stopPropagation();
@@ -31,9 +61,12 @@ export default function ServicesPage() {
 
   return (
     <Box width="100%" display="flex" flexDirection="column" alignItems="center">
+      {/* Structured Data */}
+      <StructuredData data={servicesStructuredData} id="services-data" />
+      <StructuredData data={breadcrumbData} id="breadcrumb-data" />
       {/* Hero Section with enhanced background */}
       <Box 
-        bg="var(--lex-deep-blue)" 
+        bg="brand.primary" 
         color="white" 
         pt={28}
         pb={16}
@@ -110,191 +143,7 @@ export default function ServicesPage() {
         </Container>
       </Box>
 
-      {/* Add animations for the cards */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes fadeInScale {
-          0% { opacity: 0; transform: scale(0.95); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-          100% { transform: translateY(0px); }
-        }
-        
-        @keyframes pulse {
-          0% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.05); }
-          100% { opacity: 0.8; transform: scale(1); }
-        }
-        
-        @keyframes glow {
-          0% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.1); }
-          50% { box-shadow: 0 0 20px rgba(0, 123, 255, 0.3); }
-          100% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.1); }
-        }
-        
-        .service-card {
-          animation: fadeInScale 0.8s ease-out forwards;
-          transition: all 0.3s ease;
-          perspective: 1000px;
-        }
-        
-        /* Stagger the animations for each box */
-        .service-card:nth-of-type(1) {
-          animation-delay: 0.2s;
-        }
-        
-        .service-card:nth-of-type(2) {
-          animation-delay: 0.4s;
-        }
-        
-        /* Card Flip Animation - Fixed Version */
-        .card-inner {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          perspective: 1000px;
-        }
-        
-        .card-front, .card-back {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          border-radius: 12px;
-          transition: transform 0.6s, opacity 0.6s;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .card-front {
-          background-color: white;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 2rem;
-          transform: rotateY(0deg);
-          opacity: 1;
-          z-index: 2;
-        }
-        
-        .card-back {
-          background-color: white;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 2.5rem;
-          overflow-y: auto;
-          opacity: 0;
-          transform: rotateY(-180deg);
-          z-index: 1;
-        }
-        
-        /* When card is flipped */
-        .card-flipped .card-front {
-          transform: rotateY(180deg);
-          opacity: 0;
-          z-index: 1;
-        }
-        
-        .card-flipped .card-back {
-          transform: rotateY(0deg);
-          opacity: 1;
-          z-index: 2;
-        }
-        
-        /* Add back hover animations */
-        .service-card:hover:not(.card-flipped) .card-front {
-          transform: translateY(-10px) rotateY(0deg);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-card:not(.card-flipped) .card-front {
-          transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s;
-        }
-        
-        .quarterly-card-front {
-          background: linear-gradient(135deg, #ffffff 0%, #f5f9ff 100%);
-          border-top: 5px solid var(--lex-insight-blue);
-        }
-        
-        .quarterly-card-front::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background-image: radial-gradient(circle at 10px 10px, rgba(0, 123, 255, 0.05) 3px, transparent 4px);
-          background-size: 20px 20px;
-          opacity: 0.4;
-          pointer-events: none;
-          border-radius: 12px;
-        }
-        
-        .sixmonth-card-front {
-          background: linear-gradient(135deg, #ffffff 0%, #eef7ff 100%);
-          border-top: 5px solid var(--lex-deep-blue);
-        }
-        
-        .sixmonth-card-front::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background-image: linear-gradient(45deg, rgba(0, 60, 120, 0.03) 25%, transparent 25%, transparent 50%, rgba(0, 60, 120, 0.03) 50%, rgba(0, 60, 120, 0.03) 75%, transparent 75%, transparent);
-          background-size: 20px 20px;
-          opacity: 0.6;
-          pointer-events: none;
-          border-radius: 12px;
-        }
-        
-        .flip-hint {
-          position: absolute;
-          bottom: 20px;
-          left: 0;
-          right: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
-          color: var(--lex-insight-blue);
-          font-weight: 500;
-          animation: pulseOpacity 2s infinite;
-        }
-        
-        @keyframes pulseOpacity {
-          0% { opacity: 0.6; }
-          50% { opacity: 1; }
-          100% { opacity: 0.6; }
-        }
-        
-        /* Back flip hint */
-        .back-flip-hint {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
-          color: var(--lex-insight-blue);
-          font-weight: 500;
-          padding: 6px 10px;
-          border-radius: 20px;
-          background-color: rgba(0, 123, 255, 0.1);
-          z-index: 10;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-        
-        .back-flip-hint:hover {
-          background-color: rgba(0, 123, 255, 0.2);
-        }
-      `}} />
+      {/* Card animations and styles are now handled by AnimationProvider and Chakra UI */}
 
       {/* About the Service Section */}
       <Box 
@@ -314,11 +163,11 @@ export default function ServicesPage() {
           px={{ base: 4, md: 6 }}
         >
           <VStack gap={8} alignItems="center" textAlign="center" width="100%" maxW="container.lg" mx="auto">
-            <Heading as="h2" size="xl" className="heading-text" color="var(--lex-deep-blue)">About the Service</Heading>
-            <Text fontSize="lg" className="body-text" color="var(--lex-slate-grey)" maxW="container.md" mx="auto" textAlign="left">
+            <Heading as="h2" size="xl" className="heading-text" color="brand.primary">About the Service</Heading>
+            <Text fontSize="lg" className="body-text" color="text.secondary" maxW="container.md" mx="auto" textAlign="left">
               Our Financial Education Consulting program is designed to help individuals navigate the complexities of investing and wealth-building with a structured, long-term approach. Whether you're new to investing or looking to refine your strategy, we provide tailored guidance based on your financial goals and risk tolerance.
             </Text>
-            <Text fontSize="lg" className="body-text" color="var(--lex-slate-grey)" maxW="container.md" mx="auto" textAlign="left">
+            <Text fontSize="lg" className="body-text" color="text.secondary" maxW="container.md" mx="auto" textAlign="left">
               We focus on education, strategy, and ongoing support to ensure you feel confident in your financial decisions. This is not financial advice, but a roadmap to help you take control of your wealth-building journey.
             </Text>
           </VStack>

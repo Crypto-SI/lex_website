@@ -1,0 +1,156 @@
+{
+  "id": "services",
+  "slug": "/services",
+  "title": "Services - Lex Consulting",
+  "seo": {
+    "title": "Investment Education Services - Lex Consulting",
+    "description": "Comprehensive investment education consulting plans for Financial Advisors and High Net Worth Individuals. From starter sessions to premium legacy plans.",
+    "keywords": ["investment consulting", "financial education", "crypto education", "HNWI services", "financial advisor training"],
+    "ogTitle": "Investment Education Services - Lex Consulting",
+    "ogDescription": "Comprehensive investment education consulting plans for Financial Advisors and High Net Worth Individuals.",
+    "twitterCard": "summary_large_image"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "title": "Helping You Build a Long-Term, Stress-Free Investment Strategy",
+      "subtitle": "Our Financial Education Consulting program is designed to help individuals navigate the complexities of investing and wealth-building with a structured, long-term approach.",
+      "content": {
+        "capacityStatus": {
+          "status": "Limited",
+          "message": "Limited Availability"
+        }
+      },
+      "background": {
+        "gradient": "linear(to right, rgba(10, 35, 66, 0.97), rgba(10, 35, 66, 0.92))"
+      }
+    },
+    {
+      "id": "about-service",
+      "type": "text",
+      "title": "About the Service",
+      "content": {
+        "paragraphs": [
+          "Our Financial Education Consulting program is designed to help individuals navigate the complexities of investing and wealth-building with a structured, long-term approach. Whether you're new to investing or looking to refine your strategy, we provide tailored guidance based on your financial goals and risk tolerance.",
+          "We focus on education, strategy, and ongoing support to ensure you feel confident in your financial decisions. This is not financial advice, but a roadmap to help you take control of your wealth-building journey."
+        ]
+      },
+      "background": {
+        "color": "white"
+      }
+    },
+    {
+      "id": "service-plans",
+      "type": "services",
+      "title": "Our Consulting Plans",
+      "subtitle": "Choose from our structured consulting plans that provide comprehensive education on traditional and digital asset investment strategies.",
+      "content": {
+        "plans": [
+          {
+            "id": "starter",
+            "name": "Starter Strategy",
+            "price": "FREE",
+            "duration": "Intro Session",
+            "description": "This free session is designed to understand your requirements, goals, and current situation. We'll discuss your investment experience, objectives, and challenges. The aim is to see if our consulting approach is a good fit and how we can best help you. There is no obligation—just a friendly, informative conversation to explore your needs and answer your questions.",
+            "features": [
+              "Initial consultation and assessment",
+              "Goal setting and strategy discussion",
+              "No obligation introduction",
+              "Personalized recommendations"
+            ],
+            "cta": {
+              "id": "book-free-session",
+              "text": "Book Your Free Session",
+              "href": "/contact",
+              "variant": "primary",
+              "icon": "FaArrowRight"
+            }
+          },
+          {
+            "id": "momentum",
+            "name": "Momentum",
+            "price": "$5,999",
+            "duration": "for 6 months",
+            "description": "Six months of comprehensive educational support",
+            "features": [
+              "Everything in the Quarterly Plan, plus:",
+              "3 Calls per Month with Expert Consultants (Up to 1 hour each)",
+              "Strategic Wealth Allocation & Review",
+              "Ongoing Portfolio Adjustments & Strategic Reviews",
+              "Access to Crypto AI Consultant",
+              "Access to over $50,000 worth of paid data",
+              "Access to Portfolio Management Assistant Services"
+            ],
+            "badge": {
+              "text": "MOST POPULAR",
+              "color": "blue"
+            },
+            "popular": true,
+            "cta": {
+              "id": "get-started-momentum",
+              "text": "Get Started",
+              "href": "/contact",
+              "variant": "primary",
+              "icon": "FaArrowRight"
+            }
+          },
+          {
+            "id": "legacy",
+            "name": "Legacy",
+            "price": "$18,000",
+            "duration": "USD",
+            "description": "HNW investors & businesses interested in incorporating blockchain",
+            "features": [
+              "Bespoke HNWI & Corporate Strategy",
+              "Comprehensive Structuring",
+              "Dedicated Teams",
+              "Blockchain Deployment Support"
+            ],
+            "badge": {
+              "text": "PREMIUM",
+              "color": "purple"
+            },
+            "cta": {
+              "id": "contact-legacy",
+              "text": "Contact for Legacy Plan",
+              "href": "/contact",
+              "variant": "primary",
+              "icon": "FaArrowRight"
+            }
+          }
+        ]
+      },
+      "background": {
+        "gradient": "linear(180deg, white 0%, rgba(248, 248, 248, 0.5) 100%)"
+      }
+    },
+    {
+      "id": "custom-solutions",
+      "type": "cta",
+      "title": "Custom Solutions",
+      "content": {
+        "description": "Beyond our standard plans, we offer custom educational solutions for family offices, financial advisory firms, and institutions requiring specialized knowledge frameworks.",
+        "subdescription": "Please contact us directly to discuss your specific educational needs and how we can design a curriculum tailored to your organization's goals.",
+        "cta": {
+          "id": "discuss-custom",
+          "text": "Discuss Custom Solutions",
+          "href": "/contact",
+          "variant": "outline",
+          "icon": "FaArrowRight"
+        }
+      },
+      "background": {
+        "color": "white"
+      }
+    }
+  ],
+  "metadata": {
+    "id": "services-page",
+    "title": "Services Page Content",
+    "description": "Service plans and consulting offerings for Lex Consulting",
+    "lastModified": "2024-01-15T10:00:00Z",
+    "version": "1.0.0",
+    "tags": ["services", "plans", "consulting", "pricing"]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-08-31T13:52:46.689Z",
+  "summary": {
+    "largeFilesCount": 0,
+    "totalLargeFilesSize": 0
+  },
+  "recommendations": [
+    {
+      "category": "Bundle Size",
+      "items": [
+        "Implement dynamic imports for non-critical components",
+        "Use tree shaking to eliminate unused code",
+        "Consider code splitting for route-based chunks",
+        "Optimize images and use modern formats (WebP, AVIF)"
+      ]
+    },
+    {
+      "category": "Performance",
+      "items": [
+        "Enable compression (gzip/brotli) in production",
+        "Use CDN for static assets",
+        "Implement service worker for caching",
+        "Optimize font loading with font-display: swap"
+      ]
+    },
+    {
+      "category": "Code Quality",
+      "items": [
+        "Remove console.log statements in production",
+        "Use React.memo for expensive components",
+        "Implement proper error boundaries",
+        "Use TypeScript strict mode"
+      ]
+    },
+    {
+      "category": "Accessibility",
+      "items": [
+        "Ensure all images have alt text",
+        "Maintain proper color contrast ratios",
+        "Implement keyboard navigation",
+        "Add ARIA labels where needed"
+      ]
+    }
+  ],
+  "largeFiles": []
+}

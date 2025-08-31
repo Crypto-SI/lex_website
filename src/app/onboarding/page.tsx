@@ -518,6 +518,7 @@ export default function OnboardingPage() {
                             src={slides[currentSlide].image}
                             alt={slides[currentSlide].heading}
                             fill
+                            unoptimized={true}
                             style={{ objectFit: 'contain' }}
                             priority
                           />
@@ -533,6 +534,7 @@ export default function OnboardingPage() {
                             src={slides[getPrevIndex()].image}
                             alt={slides[getPrevIndex()].heading}
                             fill
+                            unoptimized={true}
                             style={{ objectFit: 'contain' }}
                           />
                         </div>
@@ -547,6 +549,7 @@ export default function OnboardingPage() {
                             src={slides[getNextIndex()].image}
                             alt={slides[getNextIndex()].heading}
                             fill
+                            unoptimized={true}
                             style={{ objectFit: 'contain' }}
                           />
                         </div>

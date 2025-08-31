@@ -1,14 +1,52 @@
-version: '3'
+version: '3.8'
 
 services:
-  web:
+  # Development service
+  web-dev:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=development
     ports:
       - "3002:3000"
     volumes:
-      - ./src:/app/src
-      - ./public:/app/public
+      - ./src:/app/src:ro
+      - ./public:/app/public:ro
+      - ./package.json:/app/package.json:ro
+      - ./next.config.js:/app/next.config.js:ro
+      - ./tsconfig.json:/app/tsconfig.json:ro
+      - ./.eslintrc.json:/app/.eslintrc.json:ro
+      - node_modules:/app/node_modules
     environment:
-      - NODE_ENV=development 
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+      - WATCHPACK_POLLING=true
+    restart: unless-stopped
+    networks:
+      - lex-network
+
+  # Production service
+  web-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped
+    networks:
+      - lex-network
+    profiles:
+      - production
+
+volumes:
+  node_modules:
+
+networks:
+  lex-network:
+    driver: bridge 

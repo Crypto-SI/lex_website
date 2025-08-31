@@ -1,0 +1,259 @@
+name: Comprehensive Testing Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run unit and integration tests
+      run: npm run test
+    
+    - name: Run accessibility tests
+      run: npm run test:accessibility
+    
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      if: always()
+
+  performance-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Start application
+      run: npm start &
+      
+    - name: Wait for application
+      run: npx wait-on http://localhost:3000
+    
+    - name: Run performance tests
+      run: npm run test:performance
+      env:
+        TEST_URL: http://localhost:3000
+
+  visual-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Start application
+      run: npm start &
+      
+    - name: Wait for application
+      run: npx wait-on http://localhost:3000
+    
+    - name: Run visual regression tests
+      run: npm run test:visual
+      env:
+        TEST_URL: http://localhost:3000
+    
+    - name: Upload visual test results
+      uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: visual-test-results
+        path: test-results/
+
+  cross-browser-tests:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps ${{ matrix.browser }}
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Start application
+      run: npm start &
+      
+    - name: Wait for application
+      run: npx wait-on http://localhost:3000
+    
+    - name: Run cross-browser tests
+      run: npx playwright test --project=${{ matrix.browser }}
+      env:
+        TEST_URL: http://localhost:3000
+
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Start application
+      run: npm start &
+      
+    - name: Wait for application
+      run: npx wait-on http://localhost:3000
+    
+    - name: Run Lighthouse audit
+      run: npm run test:lighthouse
+      env:
+        TEST_URL: http://localhost:3000
+    
+    - name: Upload Lighthouse results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: lighthouse-results
+        path: lighthouse-results.json
+
+  security-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run security audit
+      run: npm audit --audit-level=moderate
+    
+    - name: Check for vulnerabilities
+      run: npx audit-ci --moderate
+
+  build-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Type check
+      run: npm run type-check
+    
+    - name: Lint check
+      run: npm run lint
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Test build output
+      run: |
+        ls -la .next/
+        test -f .next/BUILD_ID
+
+  deployment-test:
+    runs-on: ubuntu-latest
+    needs: [unit-tests, performance-tests, visual-tests, cross-browser-tests]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build for production
+      run: npm run build
+    
+    - name: Test production build
+      run: |
+        npm start &
+        npx wait-on http://localhost:3000
+        curl -f http://localhost:3000 || exit 1
+    
+    - name: Run smoke tests
+      run: |
+        curl -f http://localhost:3000/about || exit 1
+        curl -f http://localhost:3000/services || exit 1
+        curl -f http://localhost:3000/contact || exit 1

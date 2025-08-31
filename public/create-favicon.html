@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Favicon ICO</title>
+</head>
+<body>
+    <h1>Creating favicon.ico from SVG</h1>
+    <canvas id="canvas16" width="16" height="16" style="border: 1px solid #ccc; margin: 5px;"></canvas>
+    <canvas id="canvas32" width="32" height="32" style="border: 1px solid #ccc; margin: 5px;"></canvas>
+    
+    <script>
+        function createFavicon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size / 2 - 1;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#0A2342');
+            gradient.addColorStop(0.5, '#133c76');
+            gradient.addColorStop(1, '#007BFF');
+            
+            // Draw circle background
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Draw 'L' - scaled for size
+            ctx.fillStyle = '#FFFFFF';
+            const scale = size / 32;
+            
+            // Vertical stroke of L
+            const verticalX = Math.round(6 * scale);
+            const verticalY = Math.round(4 * scale);
+            const verticalWidth = Math.round(3 * scale);
+            const verticalHeight = Math.round(16 * scale);
+            ctx.fillRect(verticalX, verticalY, verticalWidth, verticalHeight);
+            
+            // Horizontal stroke of L
+            const horizontalX = Math.round(6 * scale);
+            const horizontalY = Math.round(17 * scale);
+            const horizontalWidth = Math.round(12 * scale);
+            const horizontalHeight = Math.round(3 * scale);
+            ctx.fillRect(horizontalX, horizontalY, horizontalWidth, horizontalHeight);
+            
+            // Accent dot
+            ctx.fillStyle = '#007BFF';
+            const accentX = Math.round(15 * scale);
+            const accentY = Math.round(17 * scale);
+            const accentSize = Math.round(3 * scale);
+            ctx.fillRect(accentX, accentY, accentSize, accentSize);
+        }
+        
+        // Create both sizes
+        createFavicon(document.getElementById('canvas16'), 16);
+        createFavicon(document.getElementById('canvas32'), 32);
+        
+        // Download function
+        function downloadCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Add download buttons
+        const button16 = document.createElement('button');
+        button16.textContent = 'Download 16x16 PNG';
+        button16.onclick = () => downloadCanvas('canvas16', 'favicon-16x16.png');
+        document.body.appendChild(button16);
+        
+        const button32 = document.createElement('button');
+        button32.textContent = 'Download 32x32 PNG';
+        button32.onclick = () => downloadCanvas('canvas32', 'favicon-32x32.png');
+        document.body.appendChild(button32);
+        
+        console.log('Favicon canvases created. You can right-click to save as PNG files.');
+    </script>
+</body>
+</html>

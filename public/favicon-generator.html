@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .favicon-preview { display: inline-block; margin: 10px; text-align: center; }
+        .favicon-preview img { border: 1px solid #ccc; }
+        canvas { border: 1px solid #ccc; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Lex Consulting Favicon Preview</h1>
+    
+    <div class="favicon-preview">
+        <h3>SVG Version (Scalable)</h3>
+        <img src="favicon.svg" width="32" height="32" alt="Favicon 32x32">
+        <img src="favicon.svg" width="16" height="16" alt="Favicon 16x16">
+    </div>
+    
+    <div class="favicon-preview">
+        <h3>Canvas Versions</h3>
+        <canvas id="favicon32" width="32" height="32"></canvas>
+        <canvas id="favicon16" width="16" height="16"></canvas>
+    </div>
+    
+    <div>
+        <h3>Instructions:</h3>
+        <ol>
+            <li>The SVG favicon is already created and ready to use</li>
+            <li>For ICO format, you can use online converters like <a href="https://favicon.io/favicon-converter/" target="_blank">favicon.io</a></li>
+            <li>Upload the SVG file to generate all required sizes</li>
+            <li>Download and replace the current favicon.ico in the public folder</li>
+        </ol>
+    </div>
+    
+    <script>
+        // Draw favicon on canvas for preview
+        function drawFavicon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size / 2 - 1;
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#0A2342');
+            gradient.addColorStop(0.5, '#133c76');
+            gradient.addColorStop(1, '#007BFF');
+            
+            // Draw circle background
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Draw 'L'
+            ctx.fillStyle = '#FFFFFF';
+            const scale = size / 32;
+            
+            // Vertical stroke
+            ctx.fillRect((10) * scale, (8) * scale, (3) * scale, (14) * scale);
+            // Horizontal stroke  
+            ctx.fillRect((10) * scale, (19) * scale, (10) * scale, (3) * scale);
+            
+            // Accent
+            ctx.fillStyle = '#007BFF';
+            ctx.fillRect((17) * scale, (19) * scale, (3) * scale, (3) * scale);
+        }
+        
+        drawFavicon(document.getElementById('favicon32'), 32);
+        drawFavicon(document.getElementById('favicon16'), 16);
+    </script>
+</body>
+</html>

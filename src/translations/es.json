@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "locale": "es",
+    "version": "1.0.0",
+    "lastModified": "2024-01-15T10:00:00Z",
+    "completeness": 95,
+    "translator": "Professional Translation Service"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "submit": "Enviar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio"
+  },
+  "navigation": {
+    "main_menu": "Menú Principal",
+    "skip_to_content": "Saltar al contenido principal",
+    "language_selector": "Seleccionar Idioma",
+    "current_language": "Idioma actual: Español"
+  },
+  "hero": {
+    "title": "Navega Mercados Complejos con Orientación Experta",
+    "subtitle": "Lex Consulting proporciona educación premium sobre estrategia de inversión a largo plazo, criptomonedas y activos alternativos para Individuos de Alto Patrimonio Neto y Asesores Financieros exigentes.",
+    "cta_services": "Explorar Servicios",
+    "cta_contact": "Programar Llamada",
+    "video_title": "Introducción a Lex Consulting"
+  },
+  "features": {
+    "title": "Consultoría Educativa Experta",
+    "subtitle": "Empoderando a HNWIs y AFs con claridad y estrategia en paisajes de inversión complejos incluyendo cripto y alternativas.",
+    "strategic_investment": {
+      "title": "Educación en Inversión Estratégica",
+      "description": "Análisis profundos de estrategias a largo plazo, análisis de mercado y principios de construcción de portafolios."
+    },
+    "crypto_alternatives": {
+      "title": "Cripto y Activos Alternativos",
+      "description": "Navegando las complejidades de activos digitales, capital privado y otras inversiones alternativas."
+    },
+    "advisor_focus": {
+      "title": "Enfoque en Asesores y HNWI",
+      "description": "Marcos y perspectivas personalizados específicamente diseñados para Asesores Financieros y sus clientes HNWI."
+    }
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "question_1": "¿Cómo se diferencia Lex Consulting de los asesores de inversión tradicionales?",
+    "answer_1": "A diferencia de los asesores tradicionales que se enfocan en vender productos, Lex Consulting adopta un enfoque educativo primero. Te empoderamos con conocimiento, marcos y comprensión estratégica que permite la toma de decisiones confiada e independiente en paisajes de inversión complejos incluyendo criptomonedas y activos alternativos.",
+    "question_2": "¿Necesito conocimiento previo de criptomonedas para beneficiarme de sus servicios?",
+    "answer_2": "No se requiere conocimiento previo. Nuestro enfoque educativo está diseñado para encontrarte donde estés, ya seas completamente nuevo en activos digitales o busques mejorar tu conocimiento existente. Traducimos conceptos complejos en perspectivas claras y accionables adaptadas a tu nivel de comprensión.",
+    "question_3": "¿Cómo ayudan sus servicios específicamente a los Asesores Financieros?",
+    "answer_3": "Los Asesores Financieros obtienen conocimiento especializado para abordar con confianza las preguntas de los clientes sobre cripto y activos alternativos, ofreciendo una ventaja competitiva en el mercado. Nuestros marcos te ayudan a evaluar oportunidades, gestionar riesgos e integrar estos activos en estrategias de portafolio más amplias para tus clientes.",
+    "question_4": "¿Cuál es su enfoque para la educación en inversiones?",
+    "answer_4": "Nuestro enfoque de tres pasos incluye Evaluación Estratégica (entender tus objetivos y brechas de conocimiento), Construcción de Conocimiento (sesiones educativas estructuradas con perspectivas accionables), y Toma de Decisiones Empoderada (equiparte con marcos que permiten el desarrollo de estrategias independientes mucho después de nuestro compromiso).",
+    "question_5": "¿Sobre qué tipos de inversiones proporcionan educación?",
+    "answer_5": "Nos enfocamos en estrategias de inversión a largo plazo a través de mercados tradicionales, criptomonedas y activos alternativos. Nuestra educación cubre principios de construcción de portafolios, marcos de gestión de riesgos, metodologías de análisis de mercado y estrategias de integración de activos emergentes.",
+    "question_6": "¿Cuánto tiempo toma típicamente el proceso educativo?",
+    "answer_6": "El cronograma varía según tus objetivos y conocimiento existente. La mayoría de los clientes se comprometen con nosotros durante 3-6 meses para construir una comprensión integral. Ofrecemos opciones de compromiso flexibles desde talleres intensivos hasta asociaciones estratégicas a largo plazo."
+  },
+  "services": {
+    "title": "Ayudándote a Construir una Estrategia de Inversión a Largo Plazo y Sin Estrés",
+    "subtitle": "Nuestro programa de Consultoría en Educación Financiera está diseñado para ayudar a individuos a navegar las complejidades de la inversión y construcción de riqueza con un enfoque estructurado a largo plazo.",
+    "capacity_limited": "Disponibilidad Limitada",
+    "capacity_open": "Inscripción Abierta",
+    "capacity_full": "Completo - Solo Lista de Espera",
+    "plans_title": "Nuestros Planes de Consultoría",
+    "plans_subtitle": "Elige entre nuestros planes de consultoría estructurados que proporcionan educación integral sobre estrategias de inversión en activos tradicionales y digitales.",
+    "starter": {
+      "name": "Estrategia Inicial",
+      "price": "GRATIS",
+      "duration": "Sesión Introductoria",
+      "description": "Esta sesión gratuita está diseñada para entender tus requisitos, objetivos y situación actual.",
+      "cta": "Reserva Tu Sesión Gratuita"
+    },
+    "momentum": {
+      "name": "Momentum",
+      "price": "$5,999",
+      "duration": "por 6 meses",
+      "description": "Seis meses de apoyo educativo integral",
+      "badge": "MÁS POPULAR",
+      "cta": "Comenzar"
+    },
+    "legacy": {
+      "name": "Legacy",
+      "price": "$18,000",
+      "duration": "USD",
+      "description": "Inversores HNW y empresas interesadas en incorporar blockchain",
+      "badge": "PREMIUM",
+      "cta": "Contactar para Plan Legacy"
+    }
+  },
+  "about": {
+    "title": "Acerca de Lex Consulting",
+    "subtitle": "Fundada con una misión clara: desmitificar paisajes de inversión complejos para Asesores Financieros e Individuos de Alto Patrimonio Neto a través de consultoría educativa primero.",
+    "story_title": "Nuestra Historia",
+    "team_title": "Nuestros Expertos",
+    "team_subtitle": "Conoce al equipo dedicado a elevar tu conocimiento y estrategia de inversión.",
+    "values_title": "Nuestros Valores",
+    "approach_title": "Nuestro Enfoque",
+    "testimonials_title": "Perspectivas de Clientes"
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "¿Listo para discutir tus necesidades? Usa el formulario a continuación para consultas generales o programa una llamada de descubrimiento.",
+    "form_title": "Consultas Generales",
+    "form_description": "¿Tienes una pregunta no relacionada con programación? Envíanos un mensaje aquí.",
+    "name_label": "Nombre",
+    "email_label": "Correo Electrónico",
+    "message_label": "Mensaje",
+    "name_placeholder": "Tu nombre",
+    "email_placeholder": "Tu dirección de correo electrónico",
+    "message_placeholder": "Tu pregunta o mensaje",
+    "submit_button": "Enviar Mensaje",
+    "calendly_title": "¿Listo para Hablar?",
+    "calendly_description": "Programa una llamada de descubrimiento sin obligación para discutir cómo podemos ayudarte a navegar paisajes de inversión complejos.",
+    "calendly_button": "Programar una Llamada de Descubrimiento"
+  },
+  "footer": {
+    "copyright": "© 2024 Lex Consulting. Todos los derechos reservados.",
+    "privacy_policy": "Política de Privacidad",
+    "terms_of_service": "Términos de Servicio"
+  },
+  "accessibility": {
+    "expand": "Expandir",
+    "collapse": "Colapsar",
+    "menu": "Menú",
+    "close_menu": "Cerrar menú",
+    "skip_to_main": "Saltar al contenido principal",
+    "external_link": "Se abre en nueva ventana"
+  },
+  "errors": {
+    "page_not_found": "Página no encontrada",
+    "something_went_wrong": "Algo salió mal",
+    "try_again": "Por favor intenta de nuevo",
+    "go_home": "Ir a la página de inicio"
+  }
+}

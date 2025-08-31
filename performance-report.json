@@ -1,0 +1,92 @@
+{
+  "timestamp": "2025-08-31T13:55:02.110Z",
+  "summary": {
+    "totalFiles": 126,
+    "totalSize": 666190,
+    "budgetsPassed": 2,
+    "budgetsTotal": 3
+  },
+  "budgets": [
+    {
+      "category": "Total JavaScript",
+      "current": 623027,
+      "budget": 500000,
+      "status": "❌",
+      "percentage": "124.6"
+    },
+    {
+      "category": "Total CSS",
+      "current": 0,
+      "budget": 100000,
+      "status": "✅",
+      "percentage": "0.0"
+    },
+    {
+      "category": "Content Files",
+      "current": 60143,
+      "budget": 150000,
+      "status": "✅",
+      "percentage": "40.1"
+    }
+  ],
+  "largestFiles": [
+    {
+      "path": "src/app/services/page.tsx",
+      "size": 40149,
+      "formattedSize": "39.21 KB"
+    },
+    {
+      "path": "src/app/onboarding/page.tsx",
+      "size": 26873,
+      "formattedSize": "26.24 KB"
+    },
+    {
+      "path": "src/app/about/page.tsx",
+      "size": 25058,
+      "formattedSize": "24.47 KB"
+    },
+    {
+      "path": "src/app/page.tsx",
+      "size": 19510,
+      "formattedSize": "19.05 KB"
+    },
+    {
+      "path": "src/utils/performance.ts",
+      "size": 15559,
+      "formattedSize": "15.19 KB"
+    },
+    {
+      "path": "src/components/media/MediaDemo.tsx",
+      "size": 13509,
+      "formattedSize": "13.19 KB"
+    },
+    {
+      "path": "src/utils/rum.ts",
+      "size": 13165,
+      "formattedSize": "12.86 KB"
+    },
+    {
+      "path": "src/components/forms/SecureContactForm.tsx",
+      "size": 12869,
+      "formattedSize": "12.57 KB"
+    },
+    {
+      "path": "src/components/monitoring/PerformanceDashboard.tsx",
+      "size": 12678,
+      "formattedSize": "12.38 KB"
+    },
+    {
+      "path": "src/components/ui/AnimationProvider.tsx",
+      "size": 12273,
+      "formattedSize": "11.99 KB"
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "budget_violation",
+      "category": "Total JavaScript",
+      "message": "Total JavaScript exceeds budget by 24.6%",
+      "priority": "high"
+    }
+  ]
+}

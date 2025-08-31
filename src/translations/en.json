@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "locale": "en",
+    "version": "1.0.0",
+    "lastModified": "2024-01-15T10:00:00Z",
+    "completeness": 100,
+    "translator": "Native"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "open": "Open",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "next": "Next",
+    "previous": "Previous",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "navigation": {
+    "main_menu": "Main Menu",
+    "skip_to_content": "Skip to main content",
+    "language_selector": "Select Language",
+    "current_language": "Current language: English"
+  },
+  "hero": {
+    "title": "Navigate Complex Markets with Expert Guidance",
+    "subtitle": "Lex Consulting provides premium education on long-term investment strategy, crypto, and alternative assets for discerning High Net Worth Individuals and Financial Advisors.",
+    "cta_services": "Explore Services",
+    "cta_contact": "Schedule Call",
+    "video_title": "Lex Consulting Introduction"
+  },
+  "features": {
+    "title": "Expert Educational Consulting",
+    "subtitle": "Empowering HNWIs and FAs with clarity and strategy in complex investment landscapes including crypto and alternatives.",
+    "strategic_investment": {
+      "title": "Strategic Investment Education",
+      "description": "Deep dives into long-term strategies, market analysis, and portfolio construction principles."
+    },
+    "crypto_alternatives": {
+      "title": "Crypto & Alternative Assets",
+      "description": "Navigating the complexities of digital assets, private equity, and other alternative investments."
+    },
+    "advisor_focus": {
+      "title": "Advisor & HNWI Focus",
+      "description": "Tailored frameworks and insights specifically designed for Financial Advisors and their HNWI clients."
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "question_1": "How is Lex Consulting different from traditional investment advisors?",
+    "answer_1": "Unlike traditional advisors who focus on selling products, Lex Consulting takes an education-first approach. We empower you with knowledge, frameworks, and strategic understanding that enables confident, independent decision-making in complex investment landscapes including cryptocurrency and alternative assets.",
+    "question_2": "Do I need prior knowledge of cryptocurrency to benefit from your services?",
+    "answer_2": "No prior knowledge is required. Our educational approach is designed to meet you where you are, whether you're completely new to digital assets or looking to enhance your existing knowledge. We translate complex concepts into clear, actionable insights tailored to your level of understanding.",
+    "question_3": "How do your services help Financial Advisors specifically?",
+    "answer_3": "Financial Advisors gain specialized knowledge to confidently address client questions about crypto and alternative assets, offering a competitive edge in the marketplace. Our frameworks help you evaluate opportunities, manage risks, and integrate these assets into broader portfolio strategies for your clients.",
+    "question_4": "What is your approach to investment education?",
+    "answer_4": "Our three-step approach includes Strategic Assessment (understanding your goals and knowledge gaps), Knowledge Building (structured educational sessions with actionable insights), and Empowered Decision-Making (equipping you with frameworks that enable independent strategy development long after our engagement).",
+    "question_5": "What types of investments do you provide education on?",
+    "answer_5": "We focus on long-term investment strategies across traditional markets, cryptocurrency, and alternative assets. Our education covers portfolio construction principles, risk management frameworks, market analysis methodologies, and emerging asset integration strategies.",
+    "question_6": "How long does the educational process typically take?",
+    "answer_6": "The timeline varies based on your goals and existing knowledge. Most clients engage with us for 3-6 months to build a comprehensive understanding. We offer flexible engagement options from intensive workshops to longer-term strategic partnerships."
+  },
+  "services": {
+    "title": "Helping You Build a Long-Term, Stress-Free Investment Strategy",
+    "subtitle": "Our Financial Education Consulting program is designed to help individuals navigate the complexities of investing and wealth-building with a structured, long-term approach.",
+    "capacity_limited": "Limited Availability",
+    "capacity_open": "Open Enrollment",
+    "capacity_full": "Full - Waitlist Only",
+    "plans_title": "Our Consulting Plans",
+    "plans_subtitle": "Choose from our structured consulting plans that provide comprehensive education on traditional and digital asset investment strategies.",
+    "starter": {
+      "name": "Starter Strategy",
+      "price": "FREE",
+      "duration": "Intro Session",
+      "description": "This free session is designed to understand your requirements, goals, and current situation.",
+      "cta": "Book Your Free Session"
+    },
+    "momentum": {
+      "name": "Momentum",
+      "price": "$5,999",
+      "duration": "for 6 months",
+      "description": "Six months of comprehensive educational support",
+      "badge": "MOST POPULAR",
+      "cta": "Get Started"
+    },
+    "legacy": {
+      "name": "Legacy",
+      "price": "$18,000",
+      "duration": "USD",
+      "description": "HNW investors & businesses interested in incorporating blockchain",
+      "badge": "PREMIUM",
+      "cta": "Contact for Legacy Plan"
+    }
+  },
+  "about": {
+    "title": "About Lex Consulting",
+    "subtitle": "Founded with a clear mission: to demystify complex investment landscapes for Financial Advisors and High Net Worth Individuals through education-first consulting.",
+    "story_title": "Our Story",
+    "team_title": "Our Experts",
+    "team_subtitle": "Meet the team dedicated to elevating your investment knowledge and strategy.",
+    "values_title": "Our Values",
+    "approach_title": "Our Approach",
+    "testimonials_title": "Client Perspectives"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Ready to discuss your needs? Use the form below for general inquiries or schedule a discovery call.",
+    "form_title": "General Inquiries",
+    "form_description": "Have a question not related to scheduling? Send us a message here.",
+    "name_label": "Name",
+    "email_label": "Email",
+    "message_label": "Message",
+    "name_placeholder": "Your name",
+    "email_placeholder": "Your email address",
+    "message_placeholder": "Your question or message",
+    "submit_button": "Send Message",
+    "calendly_title": "Ready to Talk?",
+    "calendly_description": "Schedule a no-obligation discovery call to discuss how we can help you navigate complex investment landscapes.",
+    "calendly_button": "Schedule a Discovery Call"
+  },
+  "footer": {
+    "copyright": "© 2024 Lex Consulting. All rights reserved.",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service"
+  },
+  "accessibility": {
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "menu": "Menu",
+    "close_menu": "Close menu",
+    "skip_to_main": "Skip to main content",
+    "external_link": "Opens in new window"
+  },
+  "errors": {
+    "page_not_found": "Page not found",
+    "something_went_wrong": "Something went wrong",
+    "try_again": "Please try again",
+    "go_home": "Go to homepage"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "site": {
+    "name": "Lex Consulting",
+    "description": "Premium education on long-term investment strategy, crypto, and alternative assets for High Net Worth Individuals and Financial Advisors.",
+    "url": "https://lexconsulting.com",
+    "logo": "lex-logo"
+  },
+  "navigation": {
+    "main": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "footer": [
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms"
+      }
+    ]
+  },
+  "contact": {
+    "email": "info@lexconsulting.com",
+    "calendlyUrl": "https://calendly.com/d/cq4j-vcb-th4"
+  },
+  "social": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/company/lex-consulting",
+      "icon": "FaLinkedin"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/lexconsulting",
+      "icon": "FaTwitter"
+    }
+  ]
+}

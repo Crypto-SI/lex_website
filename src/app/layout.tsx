@@ -5,8 +5,11 @@ import { SplashIntro } from "@/components/SplashIntro";
 import { Box } from "@chakra-ui/react";
 import "./globals.css";
 import { Titillium_Web, Lato } from 'next/font/google'
-import { baseMetadata } from './metadata';
+import { baseMetadata, baseViewport } from './metadata';
 import ClientLayout from './ClientLayout';
+import { AppErrorBoundary } from "@/components/error-boundaries";
+import { AnimationProvider } from "@/components/ui/AnimationProvider";
+import { SecurityProvider } from "@/components/security";
 
 // Initialize fonts
 const titillium = Titillium_Web({ 
@@ -21,8 +24,9 @@ const lato = Lato({
   variable: '--font-lato'
 })
 
-// Export metadata from the separate metadata.ts file
+// Export metadata and viewport from the separate metadata.ts file
 export const metadata = baseMetadata;
+export const viewport = baseViewport;
 
 export default function RootLayout({
   children,
@@ -32,19 +36,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body 
-        className={`${titillium.variable} ${lato.variable}`} 
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          width: "100%",
-        }}
+        className={`${titillium.variable} ${lato.variable}`}
       >
-        <Providers>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
-        </Providers>
+        <SecurityProvider>
+          <Providers>
+            <AppErrorBoundary>
+              <Box
+                display="flex"
+                flexDirection="column"
+                minHeight="100vh"
+                width="100%"
+              >
+                <AnimationProvider>
+                  <ClientLayout>
+                    {children}
+                  </ClientLayout>
+                </AnimationProvider>
+              </Box>
+            </AppErrorBoundary>
+          </Providers>
+        </SecurityProvider>
       </body>
     </html>
   );

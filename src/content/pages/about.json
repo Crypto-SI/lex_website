@@ -1,0 +1,185 @@
+{
+  "id": "about",
+  "slug": "/about",
+  "title": "About Us - Lex Consulting",
+  "seo": {
+    "title": "About Lex Consulting - Expert Investment Education Team",
+    "description": "Meet the team behind Lex Consulting. Founded to demystify complex investment landscapes for Financial Advisors and High Net Worth Individuals through education-first consulting.",
+    "keywords": ["about lex consulting", "investment education team", "crypto experts", "financial consultants"],
+    "ogTitle": "About Lex Consulting - Expert Investment Education Team",
+    "ogDescription": "Meet the team behind Lex Consulting. Founded to demystify complex investment landscapes through education-first consulting.",
+    "twitterCard": "summary_large_image"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "title": "About Lex Consulting",
+      "subtitle": "Founded with a clear mission: to demystify complex investment landscapes for Financial Advisors and High Net Worth Individuals through education-first consulting.",
+      "background": {
+        "gradient": "linear(to right, rgba(10, 35, 66, 0.97), rgba(10, 35, 66, 0.92))"
+      }
+    },
+    {
+      "id": "company-story",
+      "type": "text",
+      "title": "Our Story",
+      "content": {
+        "paragraphs": [
+          "Our team brings decades of combined experience across traditional finance, digital assets, and alternative investments. We believe in empowering our clients with knowledge, frameworks, and strategies that enable confident decision-making in rapidly evolving markets.",
+          "At Lex Consulting, we understand that the intersection of traditional finance and emerging digital assets creates unique challenges and opportunities. Our approach focuses on education rather than sales, ensuring our clients develop the foundational understanding needed to navigate complex investment landscapes with confidence."
+        ]
+      },
+      "background": {
+        "gradient": "linear(180deg, white 0%, rgba(248, 248, 248, 0.5) 100%)"
+      }
+    },
+    {
+      "id": "team",
+      "type": "team",
+      "title": "Our Experts",
+      "subtitle": "Meet the team dedicated to elevating your investment knowledge and strategy.",
+      "content": {
+        "members": [
+          {
+            "id": "cryptosi",
+            "name": "CryptoSI",
+            "title": "Co-Founder & DAO Specialist",
+            "bio": "Visionary in decentralized finance with extensive experience across high-impact DAO ecosystems including PIVX, Sentinel DVPN, and MakerDAO. Author of The Ultimate DAO Handbook, bridging complex blockchain concepts with actionable insights for long-term value creation.",
+            "image": "cryptosi-photo",
+            "socialLinks": [
+              {
+                "platform": "twitter",
+                "url": "https://x.com/Crypto_SI"
+              },
+              {
+                "platform": "github",
+                "url": "https://github.com/Crypto-SI"
+              },
+              {
+                "platform": "instagram",
+                "url": "https://www.instagram.com/cryptosi.eth/"
+              }
+            ]
+          },
+          {
+            "id": "financial-navigator",
+            "name": "Financial Navigator",
+            "title": "Co-Founder & Financial Strategist",
+            "bio": "A seasoned financial consultant with deep expertise in financial modeling, risk assessment, and multi-jurisdictional compliance. Brings a rare dual fluency in both traditional finance and blockchain systems, focusing on capital efficiency and sustainable strategy.",
+            "image": "financial-navigator-photo",
+            "socialLinks": [
+              {
+                "platform": "linkedin",
+                "url": "https://www.linkedin.com/in/alex-codling-637b22244/"
+              },
+              {
+                "platform": "twitter",
+                "url": "https://x.com/Alex_Codling_"
+              }
+            ]
+          }
+        ]
+      },
+      "background": {
+        "gradient": "linear(180deg, rgba(248, 248, 248, 0.5) 0%, rgba(248, 248, 248, 1) 100%)"
+      }
+    },
+    {
+      "id": "values",
+      "type": "features",
+      "title": "Our Values",
+      "content": {
+        "features": [
+          {
+            "id": "education-first",
+            "title": "Education First",
+            "description": "We believe in empowering through knowledge, not dependency. Our success is measured by your independent confidence.",
+            "icon": "FaGraduationCap"
+          },
+          {
+            "id": "intellectual-honesty",
+            "title": "Intellectual Honesty",
+            "description": "We present balanced perspectives, acknowledge uncertainties, and maintain transparency about the evolving nature of markets.",
+            "icon": "FaBalanceScale"
+          },
+          {
+            "id": "long-term-orientation",
+            "title": "Long-term Orientation",
+            "description": "We focus on sustainable strategies and principles that withstand market cycles, not short-term tactics or speculation.",
+            "icon": "FaChartLine"
+          }
+        ]
+      },
+      "background": {
+        "gradient": "linear(180deg, rgba(248, 248, 248, 0.5) 0%, rgba(248, 248, 248, 1) 100%)"
+      }
+    },
+    {
+      "id": "approach",
+      "type": "features",
+      "title": "Our Approach",
+      "content": {
+        "features": [
+          {
+            "id": "strategic-assessment",
+            "title": "Strategic Assessment",
+            "description": "We begin with a deep dive into your current investment approach, goals, and knowledge gaps to create a customized educational roadmap.",
+            "icon": "FaSearch",
+            "image": "approach-1"
+          },
+          {
+            "id": "knowledge-building",
+            "title": "Knowledge Building",
+            "description": "Through structured educational sessions, we provide clear, actionable insights on complex investment topics tailored to your specific needs.",
+            "icon": "FaBook",
+            "image": "approach-2"
+          },
+          {
+            "id": "empowered-decision-making",
+            "title": "Empowered Decision-Making",
+            "description": "Our goal is your independence—equipping you with frameworks and understanding that enable confident strategy development long after our engagement.",
+            "icon": "FaLightbulb",
+            "image": "approach-3"
+          }
+        ]
+      },
+      "background": {
+        "color": "white"
+      }
+    },
+    {
+      "id": "testimonials",
+      "type": "testimonials",
+      "title": "Client Perspectives",
+      "content": {
+        "testimonials": [
+          {
+            "id": "singh-testimonial",
+            "quote": "Highly recommend Financial Navigator! Alex helped me cut through the noise in my memecoin portfolio, narrowing it down to four strong picks with clear, technical reasoning and take-profit targets. He even provided exclusive insights and a detailed follow-up report. Alex's structured approach and deep knowledge made a real difference. I'll definitely work with him again.",
+            "author": "Singh",
+            "title": "Memecoin Investor"
+          },
+          {
+            "id": "sarah-testimonial",
+            "quote": "What sets Lex apart is their commitment to education rather than pushing products. They helped me develop a comprehensive understanding of alternative investments that I can apply independently to my portfolio decisions.",
+            "author": "Sarah J.",
+            "title": "Private Investor",
+            "location": "Singapore"
+          }
+        ]
+      },
+      "background": {
+        "gradient": "linear(180deg, white 0%, rgba(248, 248, 248, 0.5) 100%)"
+      }
+    }
+  ],
+  "metadata": {
+    "id": "about-page",
+    "title": "About Page Content",
+    "description": "About page content including team, values, and approach for Lex Consulting",
+    "lastModified": "2024-01-15T10:00:00Z",
+    "version": "1.0.0",
+    "tags": ["about", "team", "values", "approach", "testimonials"]
+  }
+}

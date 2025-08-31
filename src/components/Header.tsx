@@ -4,16 +4,11 @@ import { useState, useEffect } from 'react'
 import { 
   Box, Flex, HStack, Button, VStack, Image 
 } from '@chakra-ui/react'
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaTimes } from 'react-icons/fa'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-// Add type declaration for Calendly
-declare global {
-  interface Window {
-    Calendly?: any;
-  }
-}
+import { CalendlyPopup } from '@/components/media'
+import { AccessibleImage, ScreenReaderOnly } from '@/components/accessibility'
 
 type NavLinkProps = {
   href: string;
@@ -26,32 +21,40 @@ type NavLinkProps = {
 
 const NavLink = ({ href, children, isActive, onClick, isTransparent, isHomePage }: NavLinkProps) => {
   return (
-    <Link href={href} style={{ textDecoration: 'none' }}>
+    <Link href={href} textDecoration="none">
       <Box
         px={3}
         py={2}
         rounded="md"
         fontWeight={isActive ? "bold" : "medium"}
-        color={isHomePage ? "white" : (isActive ? "var(--lex-insight-blue)" : "var(--lex-deep-blue)")}
+        color={isHomePage ? "white" : (isActive ? "brand.accent" : "brand.primary")}
         position="relative"
         className="ui-text"
         textShadow={isHomePage ? "0 1px 3px rgba(0,0,0,0.5)" : "none"}
         _hover={{
-          color: isHomePage ? "var(--lex-insight-blue)" : 'var(--lex-insight-blue)',
+          color: isHomePage ? "brand.accent" : 'brand.accent',
           textShadow: isHomePage ? "0 1px 5px rgba(0,0,0,0.7)" : "none"
+        }}
+        _focus={{
+          outline: "2px solid",
+          outlineColor: "brand.accent",
+          outlineOffset: "2px"
         }}
         cursor="pointer"
         onClick={onClick}
+        role="link"
+        aria-current={isActive ? "page" : undefined}
       >
         {children}
         {isActive && (
           <Box
             position="absolute"
             height="2px"
-            bg="var(--lex-insight-blue)"
+            bg="brand.accent"
             left={0}
             right={0}
             bottom="-2px"
+            aria-hidden="true"
           />
         )}
       </Box>
@@ -77,15 +80,8 @@ export function Header({ onShowSplash }: HeaderProps) {
     { name: 'Contact', path: '/contact' },
   ];
 
-  // Function to open Calendly popup
-  const openCalendly = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/d/cq4j-vcb-th4'
-      });
-      return false;
-    }
-  };
+  // Calendly configuration
+  const calendlyUrl = 'https://calendly.com/d/cq4j-vcb-th4';
 
   // Check if current page is homepage
   useEffect(() => {
@@ -118,13 +114,15 @@ export function Header({ onShowSplash }: HeaderProps) {
     : (scrolled ? "white" : "rgba(255, 255, 255, 0.9)");
 
   // Determine text color based on homepage and scroll state
-  const logoColor = isHomePage ? "white" : "var(--lex-deep-blue)";
-  const mobileIconColor = isHomePage ? "white" : "var(--lex-deep-blue)";
+  const logoColor = isHomePage ? "white" : "brand.primary";
+  const mobileIconColor = isHomePage ? "white" : "brand.primary";
   const logoTextShadow = isHomePage ? "0 2px 4px rgba(0,0,0,0.5)" : "none";
 
   return (
     <Box
       as="header"
+      id="navigation"
+      role="banner"
       position="fixed"
       top={0}
       left={0}
@@ -146,25 +144,32 @@ export function Header({ onShowSplash }: HeaderProps) {
           {/* Logo with Image */}
           <Flex align="center" gap={3}>
             <Box 
+              as="button"
               cursor="pointer" 
               onClick={onShowSplash}
               transition="transform 0.3s ease"
               _hover={{ transform: "scale(1.05)" }}
+              _focus={{
+                outline: "2px solid",
+                outlineColor: "brand.accent",
+                outlineOffset: "2px"
+              }}
               height="40px"
               width="40px"
               display="flex"
               alignItems="center"
               justifyContent="center"
+              aria-label="Show company splash screen"
             >
-              <Image 
+              <AccessibleImage 
                 src="/lexlogodark.png" 
-                alt="Lex Logo" 
+                alt="Lex Consulting Logo" 
                 height="36px"
                 filter={isHomePage ? "brightness(10)" : "none"}
-                transition="all 0.3s ease"
+                style={{ transition: "all 0.3s ease" }}
               />
             </Box>
-            <Link href="/" style={{ textDecoration: 'none' }}>
+            <Link href="/" textDecoration="none">
               <Box
                 className="heading-text"
                 fontWeight="bold"
@@ -178,7 +183,7 @@ export function Header({ onShowSplash }: HeaderProps) {
           </Flex>
 
           {/* Desktop Navigation */}
-          <HStack gap={6} display={{ base: "none", md: "flex" }}>
+          <HStack as="nav" gap={6} display={{ base: "none", md: "flex" }} role="navigation" aria-label="Main navigation">
             {navItems.map((item) => (
               <NavLink 
                 key={item.path} 
@@ -189,30 +194,63 @@ export function Header({ onShowSplash }: HeaderProps) {
                 {item.name}
               </NavLink>
             ))}
-            {/* CTA Button - changed to use Calendly popup */}
-            <Button 
-              bg={isHomePage ? "var(--lex-insight-blue)" : "var(--lex-deep-blue)"}
-              color="white"
-              _hover={{
-                bg: isHomePage ? "#0069d9" : "#133c76"
+            {/* CTA Button - using CalendlyPopup for on-demand loading */}
+            <CalendlyPopup 
+              url={calendlyUrl}
+              onError={(error) => {
+                console.error('Calendly error:', error)
+                // Fallback: open in new window
+                window.open(calendlyUrl, '_blank', 'width=800,height=600')
               }}
-              size="md"
-              className="ui-text"
-              boxShadow={isHomePage ? "0 2px 6px rgba(0,0,0,0.3)" : "none"}
-              onClick={openCalendly}
             >
-              Schedule Call
-            </Button>
+              {({ onClick, isLoading }) => (
+                <Button 
+                  bg={isHomePage ? "brand.accent" : "brand.primary"}
+                  color="white"
+                  _hover={{
+                    bg: isHomePage ? "#0069d9" : "#133c76"
+                  }}
+                  _focus={{
+                    outline: "2px solid white",
+                    outlineOffset: "2px"
+                  }}
+                  size="md"
+                  className="ui-text"
+                  boxShadow={isHomePage ? "0 2px 6px rgba(0,0,0,0.3)" : "none"}
+                  onClick={onClick}
+                  isLoading={isLoading}
+                  loadingText="Loading..."
+                  aria-label="Schedule a consultation call"
+                >
+                  Schedule Call
+                </Button>
+              )}
+            </CalendlyPopup>
           </HStack>
 
           {/* Mobile Navigation Icon */}
           <Box 
+            as="button"
             display={{ base: "flex", md: "none" }} 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             cursor="pointer"
             p={2}
+            _focus={{
+              outline: "2px solid",
+              outlineColor: "brand.accent",
+              outlineOffset: "2px"
+            }}
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMenuOpen}
           >
-            <FaBars size={24} color={mobileIconColor} />
+            {isMenuOpen ? (
+              <FaTimes size={24} color={mobileIconColor} />
+            ) : (
+              <FaBars size={24} color={mobileIconColor} />
+            )}
+            <ScreenReaderOnly>
+              {isMenuOpen ? "Close" : "Open"} navigation menu
+            </ScreenReaderOnly>
           </Box>
 
           {/* Mobile Menu */}
@@ -228,6 +266,8 @@ export function Header({ onShowSplash }: HeaderProps) {
               display={{ base: "block", md: "none" }}
               zIndex={20}
               backdropFilter="blur(10px)"
+              role="navigation"
+              aria-label="Mobile navigation menu"
             >
               <Box className="container">
                 <VStack gap={4} alignItems="stretch">
@@ -242,24 +282,41 @@ export function Header({ onShowSplash }: HeaderProps) {
                       {item.name}
                     </NavLink>
                   ))}
-                  {/* CTA Button - Changed to use Calendly popup */}
-                  <Button 
-                    bg={isHomePage ? "var(--lex-insight-blue)" : "var(--lex-deep-blue)"}
-                    color="white"
-                    _hover={{
-                      bg: isHomePage ? "#0069d9" : "#133c76"
-                    }}
-                    size="md"
-                    width="100%"
-                    mt={2}
-                    className="ui-text"
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      openCalendly();
+                  {/* CTA Button - using CalendlyPopup for on-demand loading */}
+                  <CalendlyPopup 
+                    url={calendlyUrl}
+                    onError={(error) => {
+                      console.error('Calendly error:', error)
+                      window.open(calendlyUrl, '_blank', 'width=800,height=600')
                     }}
                   >
-                    Schedule Call
-                  </Button>
+                    {({ onClick, isLoading }) => (
+                      <Button 
+                        bg={isHomePage ? "brand.accent" : "brand.primary"}
+                        color="white"
+                        _hover={{
+                          bg: isHomePage ? "#0069d9" : "#133c76"
+                        }}
+                        _focus={{
+                          outline: "2px solid white",
+                          outlineOffset: "2px"
+                        }}
+                        size="md"
+                        width="100%"
+                        mt={2}
+                        className="ui-text"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          onClick();
+                        }}
+                        isLoading={isLoading}
+                        loadingText="Loading..."
+                        aria-label="Schedule a consultation call"
+                      >
+                        Schedule Call
+                      </Button>
+                    )}
+                  </CalendlyPopup>
                 </VStack>
               </Box>
             </Box>

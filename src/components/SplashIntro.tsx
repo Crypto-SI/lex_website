@@ -71,54 +71,7 @@ export function SplashIntro({ showSplash = true, onSplashComplete }: SplashIntro
       flexDirection="column"
       className={!isVisible ? "fadeOut" : ""}
     >
-      <style dangerouslySetInnerHTML={{ __html: `
-        .fadeOut {
-          animation: fadeOutAnim 0.8s ease-in-out forwards;
-        }
-        
-        .logoAnimation {
-          opacity: 0;
-          transform: scale(0.9);
-          animation: logoReveal 1.2s ease-out forwards;
-        }
-        
-        .taglineAnimation {
-          opacity: 0;
-          transform: translateY(10px);
-          animation: fadeUp 0.8s ease-out forwards;
-        }
-        
-        .lineAnimation {
-          width: 0;
-          animation: lineExpand 0.8s ease-out forwards;
-        }
-        
-        @keyframes logoReveal {
-          0% { opacity: 0; transform: scale(0.9); }
-          50% { opacity: 0.8; transform: scale(1.05); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes fadeUp {
-          0% { opacity: 0; transform: translateY(10px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes lineExpand {
-          0% { width: 0; }
-          100% { width: 100px; }
-        }
-        
-        @keyframes fadeOutAnim {
-          0% { opacity: 1; }
-          100% { opacity: 0; visibility: hidden; }
-        }
-        
-        @keyframes loadingBar {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(0); }
-        }
-      `}} />
+
 
       <Box
         width={{ base: "70%", md: "35%" }}
@@ -137,12 +90,12 @@ export function SplashIntro({ showSplash = true, onSplashComplete }: SplashIntro
       {animationStage > 0 && (
         <Box 
           className="taglineAnimation"
-          fontFamily="var(--font-ui)"
+          fontFamily="mono"
           fontSize={{ base: "lg", md: "xl" }}
           fontWeight="300"
           letterSpacing="0.2em"
           textTransform="uppercase"
-          color="var(--lex-deep-blue)"
+          color="brand.primary"
           mb={10}
           textAlign="center"
         >
@@ -155,7 +108,7 @@ export function SplashIntro({ showSplash = true, onSplashComplete }: SplashIntro
           className="lineAnimation"
           width="100px"
           height="2px"
-          bg="var(--lex-insight-blue)"
+          bg="brand.accent"
           mt={4}
         />
       )}
@@ -176,8 +129,8 @@ export function SplashIntro({ showSplash = true, onSplashComplete }: SplashIntro
           left: 0,
           width: '100%',
           height: '100%',
-          bg: 'var(--lex-insight-blue)',
-          animation: 'loadingBar 3.5s ease-in-out',
+          bg: 'brand.accent',
+          className: 'loading-bar',
           borderRadius: 'full',
         }}
       />

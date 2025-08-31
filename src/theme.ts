@@ -1,8 +1,12 @@
 /**
  * Lex Consulting Brand Theme
+ * Chakra UI v3 Theme System Configuration
  * Based on brand guidelines
  */
 
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+
+// Brand color palette
 const colors = {
   brand: {
     // Primary Palette
@@ -25,80 +29,116 @@ const colors = {
   gray: {
     50: '#F8F8F8',  // Lex Off-White (Preferred background)
     100: '#EAEAEA', // Lex Light Grey (Alternative background)
+    200: '#D1D5DB',
+    300: '#9CA3AF',
+    400: '#6B7280',
+    500: '#4B5563',
+    600: '#374151',
+    700: '#1F2937',
+    800: '#111827',
+    900: '#0F172A',
   }
 }
 
+// Typography configuration
 const fonts = {
   heading: "'Cinzel', serif", // Primary Typeface for headings
   body: "'EB Garamond', serif", // Secondary Typeface for body
   mono: "'Lato', sans-serif", // UI Typeface
 }
 
-const components = {
-  Button: {
-    baseStyle: {
-      fontWeight: 'medium',
-      fontFamily: 'mono',
+// Create the theme configuration with proper Chakra UI v3 structure
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          50: { value: colors.brand[50] },
+          100: { value: colors.brand[100] },
+          200: { value: colors.brand[200] },
+          300: { value: colors.brand[300] },
+          400: { value: colors.brand[400] },
+          500: { value: colors.brand[500] },
+          600: { value: colors.brand[600] },
+          700: { value: colors.brand[700] },
+          800: { value: colors.brand[800] },
+          900: { value: colors.brand[900] },
+          accent: { value: colors.brand.accent },
+        },
+        gray: {
+          50: { value: colors.gray[50] },
+          100: { value: colors.gray[100] },
+          200: { value: colors.gray[200] },
+          300: { value: colors.gray[300] },
+          400: { value: colors.gray[400] },
+          500: { value: colors.gray[500] },
+          600: { value: colors.gray[600] },
+          700: { value: colors.gray[700] },
+          800: { value: colors.gray[800] },
+          900: { value: colors.gray[900] },
+        }
+      },
+      fonts: {
+        heading: { value: fonts.heading },
+        body: { value: fonts.body },
+        mono: { value: fonts.mono },
+      },
     },
-    variants: {
-      solid: {
-        bg: 'brand.900',
-        color: 'white',
-        _hover: {
-          bg: 'brand.800',
+    semanticTokens: {
+      colors: {
+        'bg.canvas': {
+          value: { base: '{colors.gray.50}', _dark: '{colors.gray.900}' }
         },
-      },
-      outline: {
-        borderColor: 'brand.900',
-        color: 'brand.900',
-        _hover: {
-          bg: 'brand.50',
+        'bg.surface': {
+          value: { base: 'white', _dark: '{colors.gray.800}' }
         },
-      },
-      ghost: {
-        color: 'brand.900',
-        _hover: {
-          bg: 'brand.50',
+        'bg.muted': {
+          value: { base: '{colors.gray.100}', _dark: '{colors.gray.700}' }
         },
-      },
-      link: {
-        color: 'brand.accent',
-        _hover: {
-          textDecoration: 'underline',
+        'text.primary': {
+          value: { base: '{colors.brand.900}', _dark: '{colors.gray.50}' }
         },
-      },
-    },
-    defaultProps: {
-      variant: 'solid',
-    },
+        'text.secondary': {
+          value: { base: '{colors.brand.500}', _dark: '{colors.gray.300}' }
+        },
+        'text.muted': {
+          value: { base: '{colors.gray.600}', _dark: '{colors.gray.400}' }
+        },
+        'brand.primary': {
+          value: { base: '{colors.brand.900}', _dark: '{colors.brand.100}' }
+        },
+        'brand.secondary': {
+          value: { base: '{colors.brand.500}', _dark: '{colors.brand.300}' }
+        },
+        'brand.accent': {
+          value: { base: '{colors.brand.accent}', _dark: '{colors.brand.accent}' }
+        },
+        'interactive.primary': {
+          value: { base: '{colors.brand.900}', _dark: '{colors.brand.200}' }
+        },
+        'interactive.hover': {
+          value: { base: '{colors.brand.800}', _dark: '{colors.brand.300}' }
+        },
+        'interactive.active': {
+          value: { base: '{colors.brand.700}', _dark: '{colors.brand.400}' }
+        }
+      }
+    }
   },
-  Heading: {
-    baseStyle: {
-      fontWeight: 'bold',
-      color: 'brand.900',
-      fontFamily: 'heading',
-    },
-  },
-  Text: {
-    baseStyle: {
+  globalCss: {
+    body: {
+      bg: 'bg.canvas',
+      color: 'text.primary',
       fontFamily: 'body',
-      fontSize: '18px',
     },
   },
-}
+})
 
-const theme = {
-  colors,
-  fonts,
-  components,
-  styles: {
-    global: {
-      body: {
-        bg: 'gray.50',
-        color: 'brand.900',
-      },
-    },
-  },
-}
+// Create and export the custom system
+export const lexSystem = createSystem(defaultConfig, config)
 
-export default theme 
+// Export individual theme parts for backward compatibility
+export { colors, fonts }
+
+// Default export for backward compatibility
+export default lexSystem 

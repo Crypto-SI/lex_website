@@ -1,0 +1,82 @@
+{
+  "lex-logo": {
+    "id": "lex-logo",
+    "src": "/lexlogo.png",
+    "alt": "Lex Consulting Logo",
+    "width": 200,
+    "height": 60
+  },
+  "lex-logo-dark": {
+    "id": "lex-logo-dark",
+    "src": "/lexlogodark.png",
+    "alt": "Lex Consulting Logo Dark",
+    "width": 200,
+    "height": 60
+  },
+  "lex-logo-light": {
+    "id": "lex-logo-light",
+    "src": "/lexlogolight.png",
+    "alt": "Lex Consulting Logo Light",
+    "width": 200,
+    "height": 60
+  },
+  "hero-bg": {
+    "id": "hero-bg",
+    "src": "/lexhero.png",
+    "alt": "Lex Consulting Hero Background",
+    "width": 1920,
+    "height": 1080
+  },
+  "intro-video": {
+    "id": "intro-video",
+    "src": "/loop.mp4",
+    "alt": "Lex Consulting Introduction Video",
+    "poster": "/lexthumb2.png",
+    "videoId": "796cT8bt1P8",
+    "aspectRatio": 1.78,
+    "width": 500,
+    "height": 281
+  },
+  "cryptosi-photo": {
+    "id": "cryptosi-photo",
+    "src": "/crylex.png",
+    "alt": "CryptoSI - Co-Founder & DAO Specialist",
+    "width": 400,
+    "height": 400
+  },
+  "financial-navigator-photo": {
+    "id": "financial-navigator-photo",
+    "src": "/FNlex.png",
+    "alt": "Financial Navigator - Co-Founder & Financial Strategist",
+    "width": 400,
+    "height": 400
+  },
+  "approach-1": {
+    "id": "approach-1",
+    "src": "/app1.png",
+    "alt": "Strategic Assessment Illustration",
+    "width": 180,
+    "height": 180
+  },
+  "approach-2": {
+    "id": "approach-2",
+    "src": "/app2.png",
+    "alt": "Knowledge Building Illustration",
+    "width": 180,
+    "height": 180
+  },
+  "approach-3": {
+    "id": "approach-3",
+    "src": "/app3.png",
+    "alt": "Empowered Decision-Making Illustration",
+    "width": 180,
+    "height": 180
+  },
+  "subtle-pattern": {
+    "id": "subtle-pattern",
+    "src": "/subtle-pattern.png",
+    "alt": "Subtle Background Pattern",
+    "width": 100,
+    "height": 100
+  }
+}

@@ -1,49 +1,36 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Box } from "@chakra-ui/react";
+import { Box, Link } from "@chakra-ui/react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SplashIntro } from "@/components/SplashIntro";
-import Script from 'next/script';
+import { ScreenReaderOnly } from "@/components/accessibility";
+import { PageErrorBoundary } from "@/components/error-boundaries";
+import { Breadcrumbs } from "@/components/seo";
+import { useLocalStorage } from "@/utils/stateManagement";
 
-export default function ClientLayout({
-  children,
-}: {
+interface ClientLayoutProps {
   children: React.ReactNode;
-}) {
-  const [showSplash, setShowSplash] = useState(true);
-  const [hasVisited, setHasVisited] = useState(false);
+}
 
-  // Check if user has visited before
+export default function ClientLayout({ children }: ClientLayoutProps) {
+  const [hasVisitedBefore, setHasVisitedBefore, isLoaded] = useLocalStorage('hasVisitedLex', false);
+  const [showSplash, setShowSplash] = useState(true);
+
+  // Initialize splash state based on visit history
   useEffect(() => {
-    // Check if localStorage is available (client-side)
-    if (typeof window !== 'undefined') {
-      const hasVisitedBefore = localStorage.getItem('hasVisitedLex') === 'true';
-      
-      // If they've visited before, don't show splash
+    if (isLoaded) {
       if (hasVisitedBefore) {
         setShowSplash(false);
       } else {
-        // Mark as visited for future
-        localStorage.setItem('hasVisitedLex', 'true');
+        // Mark as visited for future visits
+        setHasVisitedBefore(true);
       }
-      
-      setHasVisited(true);
     }
-  }, []);
+  }, [isLoaded, hasVisitedBefore, setHasVisitedBefore]);
 
-  // Initialize Calendly styles
-  useEffect(() => {
-    // Add Calendly styles (typically done by the Calendly script, but adding manually for completeness)
-    if (typeof window !== 'undefined' && !document.getElementById('calendly-styles')) {
-      const style = document.createElement('link');
-      style.id = 'calendly-styles';
-      style.rel = 'stylesheet';
-      style.href = 'https://assets.calendly.com/assets/external/widget.css';
-      document.head.appendChild(style);
-    }
-  }, []);
+
 
   const handleShowSplash = () => {
     setShowSplash(true);
@@ -55,18 +42,53 @@ export default function ClientLayout({
 
   return (
     <>
+      {/* Skip Links for Keyboard Navigation */}
+      <ScreenReaderOnly>
+        <Link
+          href="#main-content"
+          className="skip-link"
+          _focus={{
+            position: 'absolute',
+            top: '6px',
+            left: '6px',
+            zIndex: 9999,
+            background: 'var(--lex-deep-blue)',
+            color: 'white',
+            padding: '8px',
+            textDecoration: 'none',
+            borderRadius: '4px'
+          }}
+        >
+          Skip to main content
+        </Link>
+        <Link
+          href="#navigation"
+          className="skip-link"
+          _focus={{
+            position: 'absolute',
+            top: '6px',
+            left: '140px',
+            zIndex: 9999,
+            background: 'var(--lex-deep-blue)',
+            color: 'white',
+            padding: '8px',
+            textDecoration: 'none',
+            borderRadius: '4px'
+          }}
+        >
+          Skip to navigation
+        </Link>
+      </ScreenReaderOnly>
+      
       <Header onShowSplash={handleShowSplash} />
-      {hasVisited && showSplash && <SplashIntro showSplash={showSplash} onSplashComplete={handleSplashComplete} />}
-      <Box as="main" flexGrow={1} width="100%" pt="0">
-        {children}
+      {isLoaded && showSplash && <SplashIntro showSplash={showSplash} onSplashComplete={handleSplashComplete} />}
+      <Breadcrumbs />
+      <Box as="main" id="main-content" flexGrow={1} width="100%" pt="0" tabIndex={-1}>
+        <PageErrorBoundary pageName="Main Content">
+          {children}
+        </PageErrorBoundary>
       </Box>
       <Footer />
-      
-      {/* Calendly widget script - load it globally but lazyOnload to not block rendering */}
-      <Script 
-        src="https://assets.calendly.com/assets/external/widget.js" 
-        strategy="lazyOnload" 
-      />
     </>
   );
 } 
