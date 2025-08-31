@@ -529,7 +529,7 @@ export default function ServicesPage() {
                       </Heading>
                       <Box textAlign="center">
                         <Heading size="4xl" color="var(--lex-insight-blue)" className="heading-text" lineHeight="1">
-                          $1,999
+                          $5,999
                         </Heading>
                         <Text fontSize="xl" color="var(--lex-slate-grey)" className="body-text">
                           for 6 months
@@ -572,7 +572,7 @@ export default function ServicesPage() {
                       </Box>
                       <HStack alignItems="flex-end" gap={4}>
                         <Heading size="2xl" color="var(--lex-insight-blue)" className="heading-text">
-                          $1,999
+                          $5,999
                         </Heading>
                         <Text fontSize="lg" color="var(--lex-slate-grey)" pb={1} className="body-text">for 6 months</Text>
                       </HStack>
