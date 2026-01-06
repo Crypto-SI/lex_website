@@ -6,7 +6,7 @@ import { FaArrowRight, FaPhoneAlt } from 'react-icons/fa';
 import Link from 'next/link';
 import { ContentRenderProps } from '@/types/content';
 import { useAsset } from '@/providers/ContentProvider';
-import { OptimizedYouTubePlayer } from '@/components/media';
+import { OptimizedImage, OptimizedYouTubePlayer } from '@/components/media';
 
 interface HeroContent {
   backgroundImage?: string;
@@ -48,14 +48,27 @@ export function HeroRenderer({ content, title, subtitle }: ContentRenderProps & 
       color="white"
       position="relative"
       overflow="hidden"
-      backgroundImage={backgroundAsset ? `url('${backgroundAsset.src}')` : undefined}
-      backgroundSize="cover"
-      backgroundPosition="center"
-      backgroundRepeat="no-repeat"
       minH={{ base: '80vh', md: '85vh', lg: '90vh' }}
       display="flex"
       alignItems="center"
     >
+      {backgroundAsset && (
+        <Box position="absolute" inset="0" zIndex={0}>
+          <OptimizedImage
+            src={backgroundAsset.src}
+            alt=""
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            quality={72}
+            lazy={false}
+            unoptimized={false}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            containerProps={{ width: '100%', height: '100%' }}
+          />
+        </Box>
+      )}
       {/* Overlay */}
       {content.overlay && (
         <Box 
@@ -66,12 +79,12 @@ export function HeroRenderer({ content, title, subtitle }: ContentRenderProps & 
           height="100%" 
           bgGradient={content.overlay.gradient}
           opacity={content.overlay.opacity}
-          zIndex="0"
+          zIndex="1"
         />
       )}
 
       {/* Hero Content */}
-      <Container maxW="container.xl" position="relative" zIndex={1} py={{ base: 8, md: 12 }} w="100%">
+      <Container maxW="container.xl" position="relative" zIndex={2} py={{ base: 8, md: 12 }} w="100%">
         <Flex 
           direction={{ base: 'column', lg: 'row' }} 
           align="center" 

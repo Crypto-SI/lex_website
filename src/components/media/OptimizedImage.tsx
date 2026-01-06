@@ -23,6 +23,7 @@ export const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
     const [isLoading, setIsLoading] = useState(true)
     const [hasError, setHasError] = useState(false)
     const [errorMessage, setErrorMessage] = useState<string>('')
+    const { unoptimized = true, ...imageProps } = props
 
     const handleLoad = () => {
       setIsLoading(false)
@@ -81,7 +82,7 @@ export const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
         {/* Optimized Next.js Image */}
         <NextImage
           ref={ref}
-          {...props}
+          {...imageProps}
           alt={alt}
           loading={lazy ? 'lazy' : 'eager'}
           onLoad={handleLoad}
@@ -89,12 +90,12 @@ export const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
           style={{
             opacity: isLoading ? 0 : 1,
             transition: 'opacity 0.3s ease-in-out',
-            ...props.style
+            ...imageProps.style
           }}
-          // Disable optimization for static export compatibility
-          unoptimized={true}
+          // Default to unoptimized to preserve static export compatibility
+          unoptimized={unoptimized}
           // Add quality optimization (only applies when optimization is enabled)
-          quality={props.quality || 85}
+          quality={imageProps.quality || 85}
         />
       </Box>
     )

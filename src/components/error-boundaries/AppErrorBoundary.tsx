@@ -37,10 +37,12 @@ const AppErrorFallback: React.FC<ErrorFallbackProps> = ({ error, resetError }) =
         <VStack gap={8}>
           {/* Logo */}
           <Image
-            src="/lexlogo.png"
+            src="/lexlogo-400.webp"
             alt="Lex Consulting Logo"
             maxW="200px"
             h="auto"
+            htmlWidth="200"
+            htmlHeight="200"
           />
 
           {/* Error Message */}

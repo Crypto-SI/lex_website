@@ -162,9 +162,11 @@ export function Header({ onShowSplash }: HeaderProps) {
               aria-label="Show company splash screen"
             >
               <AccessibleImage 
-                src="/lexlogodark.png" 
+                src="/lexlogodark-48.webp" 
                 alt="Lex Consulting Logo" 
                 height="36px"
+                htmlWidth="36"
+                htmlHeight="36"
                 filter={isHomePage ? "brightness(10)" : "none"}
                 style={{ transition: "all 0.3s ease" }}
               />

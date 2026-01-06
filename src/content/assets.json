@@ -1,31 +1,31 @@
 {
   "lex-logo": {
     "id": "lex-logo",
-    "src": "/lexlogo.png",
+    "src": "/lexlogo-400.webp",
     "alt": "Lex Consulting Logo",
-    "width": 200,
-    "height": 60
+    "width": 400,
+    "height": 400
   },
   "lex-logo-dark": {
     "id": "lex-logo-dark",
-    "src": "/lexlogodark.png",
+    "src": "/lexlogodark-400.webp",
     "alt": "Lex Consulting Logo Dark",
-    "width": 200,
-    "height": 60
+    "width": 400,
+    "height": 400
   },
   "lex-logo-light": {
     "id": "lex-logo-light",
-    "src": "/lexlogolight.png",
+    "src": "/lexlogolight-400.webp",
     "alt": "Lex Consulting Logo Light",
-    "width": 200,
-    "height": 60
+    "width": 400,
+    "height": 400
   },
   "hero-bg": {
     "id": "hero-bg",
-    "src": "/lexhero.png",
+    "src": "/lexhero2.webp",
     "alt": "Lex Consulting Hero Background",
-    "width": 1920,
-    "height": 1080
+    "width": 1536,
+    "height": 1024
   },
   "intro-video": {
     "id": "intro-video",

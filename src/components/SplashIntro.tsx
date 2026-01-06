@@ -80,9 +80,11 @@ export function SplashIntro({ showSplash = true, onSplashComplete }: SplashIntro
         mb={8}
       >
         <Image 
-          src="/lexlogolight.png" 
+          src="/lexlogolight-400.webp" 
           alt="Lex Consulting" 
           width="100%"
+          htmlWidth="350"
+          htmlHeight="350"
           filter="drop-shadow(0 0 15px rgba(0, 123, 255, 0.2))"
         />
       </Box>

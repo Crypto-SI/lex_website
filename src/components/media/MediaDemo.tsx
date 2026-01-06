@@ -100,7 +100,7 @@ export const MediaDemo = () => {
               <Text fontWeight="bold" mb={4}>Example:</Text>
               <OptimizedVideo
                 src="/loop.mp4"
-                poster="/lexhero.png"
+                poster="/lexhero2.png"
                 width="100%"
                 aspectRatio={16/9}
                 muted={true}
@@ -116,7 +116,7 @@ export const MediaDemo = () => {
               <Code mt={2} p={2} display="block" fontSize="sm">
                 {`<OptimizedVideo
   src="/loop.mp4"
-  poster="/lexhero.png"
+  poster="/lexhero2.png"
   aspectRatio={16/9}
   lazy={true}
   controls={true}

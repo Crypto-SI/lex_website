@@ -6,8 +6,8 @@ export const businessInfo = {
   legalName: 'Lex Consulting LLC',
   description: 'Structured educational consulting for high-net-worth individuals and financial advisors, bridging traditional finance and digital assets.',
   url: 'https://lexconsulting.com',
-  logo: 'https://lexconsulting.com/lexlogo.png',
-  image: 'https://lexconsulting.com/og-image.jpg',
+  logo: 'https://lexconsulting.com/lexlogo-400.webp',
+  image: 'https://lexconsulting.com/lexhero2.png',
   telephone: '+1-555-LEX-CONS',
   email: 'info@lexconsulting.com',
   address: {
@@ -108,25 +108,20 @@ export const baseMetadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    alternateLocale: ['es_US'],
     url: businessInfo.url,
     siteName: businessInfo.name,
     title: 'Lex Consulting | Empowering Strategic Investors',
     description: businessInfo.description,
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
+        url: '/lexhero2.png',
         alt: 'Lex Consulting - Financial Education and Investment Strategy',
-        type: 'image/jpeg',
+        type: 'image/png',
       },
       {
-        url: '/og-image-square.jpg',
-        width: 1200,
-        height: 1200,
+        url: '/lexlogo.png',
         alt: 'Lex Consulting Logo',
-        type: 'image/jpeg',
+        type: 'image/png',
       }
     ],
   },
@@ -138,7 +133,7 @@ export const baseMetadata: Metadata = {
     description: businessInfo.description,
     images: [
       {
-        url: '/twitter-image.jpg',
+        url: '/lexhero2.png',
         alt: 'Lex Consulting - Financial Education and Investment Strategy',
       }
     ],
@@ -172,20 +167,11 @@ export const baseMetadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  verification: {
-    google: 'verification_token_here',
-    yandex: 'verification_token_here',
-    yahoo: 'verification_token_here',
-  },
   category: 'Finance',
   classification: 'Financial Services',
   referrer: 'origin-when-cross-origin',
   alternates: {
     canonical: 'https://lexconsulting.com',
-    languages: {
-      'en-US': 'https://lexconsulting.com',
-      'es-US': 'https://lexconsulting.com/es',
-    },
   },
   other: {
     'msapplication-TileColor': '#0a2342',
@@ -237,8 +223,13 @@ export function generatePageMetadata(
   } = options;
 
   const fullUrl = `https://lexconsulting.com${path}`;
-  const pageImage = image || '/og-image.jpg';
+  const pageImage = image || '/lexhero2.png';
   const pageImageAlt = imageAlt || `${title} - Lex Consulting`;
+  const pageImageType = pageImage.endsWith('.png')
+    ? 'image/png'
+    : pageImage.endsWith('.webp')
+      ? 'image/webp'
+      : 'image/jpeg';
 
   const metadata: Metadata = {
     ...baseMetadata,
@@ -258,10 +249,8 @@ export function generatePageMetadata(
       images: [
         {
           url: pageImage,
-          width: 1200,
-          height: 630,
           alt: pageImageAlt,
-          type: 'image/jpeg',
+          type: pageImageType,
         },
       ],
       ...(publishedTime && { publishedTime }),
